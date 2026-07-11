@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mariana Figueiredo | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <!-- Top Navigation -->
+    <nav class="navbar">
+        <div class="logo">Mariana.</div>
+        
+        <div class="nav-right">
+            <a href="/documents/Mariana_Figueiredo_CV.pdf" download="Mariana_Figueiredo_CV.pdf" class="btn-download">Download CV &darr;</a>
+            
+            <div class="menu-container">
+                <button class="menu-toggle" id="menuToggle">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                    <span>Menu</span>
+                </button>
+                
+                <div class="dropdown" id="dropdownMenu">
+                    <a href="/about">About me</a>
+                    <a href="/expertise">Areas of Expertise</a>
+                    <a href="/projects">Experience & Projects</a>
+                    <a href="/education">Education</a>
+                    <a href="#contacts">Contacts</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Hero Section -->
+    <main class="hero">
+        <div class="hero-text">
+            <h1>Hi,<br>I'm Mariana Figueiredo.</h1>
+            <p>Focused on the practical application of bioengineering to solve real-world biotechnology challenges.</p>
+        </div>
+
+        <div class="hero-image">
+            <div class="image-wrapper">
+                <img src="/images/profile.png" alt="Mariana Figueiredo">
+                <a href="/about" class="btn-about">About me</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- 3 Rectangular Cards Section -->
+    <section class="info-section">
+        <div class="cards-container">
+            
+            <!-- Card 1 -->
+            <div class="card">
+                <h3>Areas of Expertise</h3>
+                <ul>
+                    <li>Bioprocess Engineering</li>
+                    <li>Laboratory Research</li>
+                    <li>Food Technology</li>
+                </ul>
+                <a href="/expertise" class="card-link">See more areas of expertise &rarr;</a>
+            </div>
+            
+            <!-- Card 2 -->
+            <div class="card">
+                <h3>Experience and Projects</h3>
+                
+                <!-- Reusing the stacked text formatting for a clean look! -->
+                <div class="edu-preview">
+                    <span class="degree">MSc Graduate Researcher</span>
+                    <span class="date">LEPABE</span>
+                    <span class="grade">Feb 2026 &ndash; Present</span>
+                </div>
+                
+                <a href="/projects" class="card-link">See more experience &rarr;</a>
+            </div>
+            
+            <!-- Card 3 -->
+            <div class="card">
+                <h3>Education</h3>
+                
+                <!-- Stacked text formatting (Fixed the typo here!) -->
+                <div class="edu-preview">
+                    <span class="degree">MSc in Bioengineering</span>
+                    <span class="date">2024 &ndash; Present</span>
+                    <span class="grade">Grade --- </span>
+                </div>
+                
+                <a href="/education" class="card-link">See more education &rarr;</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer Contacts (Added id="contacts" so the menu link jumps here) -->
+    <footer class="contacts" id="contacts">
+        <a href="https://www.linkedin.com/in/marianadiasfigueiredo" target="_blank">LinkedIn</a>
+        <a href="mailto:marianadfigueiredop@gmail.com">Email</a>
+        <a href="tel:+351914665196">Phone</a>
+    </footer>
+
+    <!-- Script to make the Menu open and close -->
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+
+        // Open/Close menu when clicking the button
+        menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation(); 
+            dropdownMenu.classList.toggle('show');
+        });
+
+        // Close menu if clicking anywhere else on the screen
+        document.addEventListener('click', (event) => {
+            if (!dropdownMenu.contains(event.target)) {
+                dropdownMenu.classList.remove('show');
+            }
+        });
+    </script>
+
+<!-- GLOBAL SECURITY SCRIPT -->
+    <script>
+        // 1. Disable Right-Click Menu entirely
+        document.addEventListener('contextmenu', event => event.preventDefault());
+
+        // 2. Disable Copy (Ctrl+C), Save (Ctrl+S), Inspect Element (F12), and View Source (Ctrl+U)
+        document.addEventListener('keydown', function(e) {
+            // F12 key
+            if (e.key === 'F12') {
+                e.preventDefault();
+            }
+            // Ctrl/Cmd shortcuts
+            if (e.ctrlKey || e.metaKey) {
+                if (e.key === 'c' || e.key === 'C' || // Copy
+                    e.key === 's' || e.key === 'S' || // Save
+                    e.key === 'u' || e.key === 'U') { // View Source
+                    e.preventDefault();
+                }
+                // Ctrl+Shift+I (Inspect Element)
+                if (e.shiftKey && (e.key === 'i' || e.key === 'I')) {
+                    e.preventDefault();
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>

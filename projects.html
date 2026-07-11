@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects & Experience | Mariana Figueiredo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/" class="logo" style="text-decoration: none; color: var(--text-color);">Mariana.</a>
+        <div class="nav-right">
+            <a href="/" class="btn-download">&larr; Back to Home</a>
+        </div>
+    </nav>
+
+    <main class="page-container wide">
+        <h1 class="page-title">Experience and Projects</h1>
+        <p class="intro-text">A showcase of my practical experience, along with key academic projects and research.</p>
+
+        <!-- ========================================= -->
+        <!-- EXPERIENCE ACCORDION                      -->
+        <!-- ========================================= -->
+        <h2 class="section-title">Professional Experience</h2>
+        
+        <div class="accordion-container">
+            
+            <!-- Experience 1 -->
+            <div class="accordion-item active">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <div class="acc-title">
+                        <h3>MSc Graduate Researcher</h3>
+                        <span>Laboratory for Process Engineering, Environment, Biotechnology and Energy (LEPABE) &bull; Porto, Portugal</span>
+                        <span>Feb 2026 - Present</span>
+                    </div>
+                    <span class="material-symbols-outlined acc-icon">expand_more</span>
+                </div>
+                <div class="accordion-body">
+                    <div class="acc-content">
+                        <p class="experience-intro">Currently developing a nanocarrier-immobilized protease biocatalyst, optimized via Design of Experiments (DoE), to valorize an industrial by-product from agar production into high-value ACE-inhibitory peptides.</p>
+                        <!--                        
+                        <ul class="experience-list">
+                            <li>Sample preparation and characterization</li>
+                        </ul>
+                    -->
+                        <div class="acc-tags">
+                            <span>Process Optimization</span>
+                            <span>Enzymatic Bioprocessing</span>
+                            <span>Statistical Analysis</span>
+                            <span>Bioactivity Assessment</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Experience 2 -->
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <div class="acc-title">
+                        <h3>Research Intern</h3>
+                        <span>Laboratory of Food Chemistry and Biochemistry (LFCB) &bull; Leuven, Belgium</span>
+                        <span>Sep 2025 - Jan 2026</span>
+                    </div>
+                    <span class="material-symbols-outlined acc-icon">expand_more</span>
+                </div>
+                <div class="accordion-body">
+                    <div class="acc-content">
+                        <!-- The introductory sentence goes in its own paragraph right ABOVE the list -->
+                        <p class="experience-intro">Investigated the foaming properties of wheat bran proteins and their use in aerated food products:</p>
+                        
+                        <!-- The list only contains the <li> items -->
+                        <ul class="experience-list">
+                            <li>Operated specialized laboratory equipment to measure surface tension and foam stability.</li>
+                            <li>Conducted food formulation experiments of sponge cakes, achieving a 25% egg reliance reduction through plant-based protein substitution.</li>
+                            <li>Contributed to the broader goal of enhancing the sustainability profile of food products.</li>
+                        </ul>
+                        <div class="acc-tags">
+                            <span>Food Foaming Properties</span>
+                            <span>Protein Techno-Functionality</span>
+                            <span>Interfacial Behavior</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Experience 3 -->
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <div class="acc-title">
+                        <h3>Research Intern</h3>
+                        <span>Laboratory for Process Engineering, Environment, Biotechnology and Energy (LEPABE) &bull; Porto, Portugal</span>
+                        <span>Feb 2025 - Jun 2025</span>
+                    </div>
+                    <span class="material-symbols-outlined acc-icon">expand_more</span>
+                </div>
+                <div class="accordion-body">
+                    <div class="acc-content">
+                        <p class="experience-intro">Demonstrated a promising applicability of algae hydrolysates in nutraceuticals through bioactivity assessment:</p>
+                        
+                        <ul class="experience-list">
+                            <li>Extracted and enzimatically hydrolysed macroalgae-based proteins to yield bioactive peptides.</li>
+                            <li>Evaluated anti-hypertensive potential through ACE-inhibitory activity assays, achieving an half-maximal inhibitory concentration of about 55 g/mL for macroalgae-derived peptides, exhibiting competitive ACE-inhibitory capacity compared to synthetic inhibitors.</li>
+                            <li>Identified a total of 30 different potential anti-hypertensive peptides through an in silico screening and simulated their bioaccessability and bioavailability.</li>
+                        </ul>
+                        <div class="acc-tags">
+                            <span>Protein Extraction and Purification</span>
+                            <span>Enzymatic Bioprocessing</span>
+                            <span>Nutrient Bioavailability and Bioaccessibility</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Experience 4 -->
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <div class="acc-title">
+                        <h3>Engineer Intern</h3>
+                        <span>AgroGrIN Tech &bull; Porto, Portugal</span>
+                        <span>Feb 2024 - May 2024</span>
+                    </div>
+                    <span class="material-symbols-outlined acc-icon">expand_more</span>
+                </div>
+                <div class="accordion-body">
+                    <div class="acc-content">
+                        <p class="experience-intro">Developed and applied for the first time work methodologies in a business environment:</p>
+                        
+                        <ul class="experience-list">
+                            <li>Contributed to the optimization of production workflows, identifying potential bottlenecks and proposing alternative unit operations.</li>
+                            <li>Conducted equipment research and feasibility studies for certain unit operations to assess their potential integration in the company’s production system.</li>
+                        </ul>
+                        <div class="acc-tags">
+                            <span>Downstream Processing Design</span>
+                            <span>Bioprocess Analysis</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+
+        <!-- ========================================= -->
+        <!-- FEATURED PROJECTS GRID                    -->
+        <!-- ========================================= -->
+        <h2 class="section-title">Featured Projects</h2>
+        
+        <div class="projects-grid">
+            
+            <!-- Project 1 (Standard Link) -->
+            <div class="proj-card">
+                <span class="material-symbols-outlined proj-icon">precision_manufacturing</span>
+                <h3>Industrial Production of Alpha-Mannosidase</h3>
+                
+                <!-- NEW: Year and Association -->
+                <!-- NEW: Year and Association -->
+                <div class="proj-meta">
+                    <span>2025</span>
+                    <span>&bull;</span>
+                    <span class="assoc-container">
+                        Associated with: 
+                        <!-- The link to the education page with a tooltip -->
+                        <a href="/education#master-degree" class="assoc-link" data-tooltip="Go To Master in Bioengineering">Master in Bioengineering</a>
+                    </span>
+                </div>
+
+                <p>Developed a patent-based industrial design for alpha-mannosidase production and purification: managed the project lifecycle from initial market analysis and process description to process flow modeling, technical equipment sizing for upstream and downstream operations and economic analysis.</p>
+                
+                <!-- NEW: Dual Action Links -->
+                <div class="proj-actions">
+                    <!-- Added target="_blank" so they open in a new tab! -->
+                    <a href="/images/Abstract for Industrial Production of Alpha-Mannosidase.pdf" class="card-link" target="_blank">Read abstract and more &rarr;</a>
+                    
+                    <!-- Swap the href below with the name of your exported PowerPoint PDF -->
+                    <!-- <a href="/images/Presentation-Highlights.pdf" class="card-link" target="_blank">See highlights &rarr;</a> -->
+                </div>
+            </div>
+
+            <!-- Project 2 (Secure Document Viewer) 
+            <div class="proj-card secure-card">
+                <span class="material-symbols-outlined proj-icon">lock</span>
+                <h3>Bioprocess Scale-up Strategy</h3>
+                <p>Confidential project detailing the mathematical modeling and scale-up design for a novel microbial fermentation process.</p>
+                
+                <button class="btn-secure" onclick="openSecureViewer()">View Secure Document</button>
+            </div>  -->
+
+        </div>
+    </main>
+
+    <!-- ========================================= -->
+    <!-- SECURE DOCUMENT VIEWER MODAL              -->
+    <!-- ========================================= -->
+    <div id="secure-modal-overlay" class="modal-overlay">
+        <div class="secure-content-box">
+            <button class="modal-close" onclick="closeSecureViewer()">&times;</button>
+            
+            <div class="secure-header">
+                <span class="material-symbols-outlined" style="color: #d9534f;">lock</span>
+                <h3>Confidential Document</h3>
+                <p>Downloading and saving are disabled for this file.</p>
+            </div>
+
+            <!-- The protected image area. oncontextmenu="return false;" blocks right-clicks! -->
+            <div class="protected-document" oncontextmenu="return false;">
+                <!-- The Watermark -->
+                <div class="watermark">CONFIDENTIAL - DO NOT DISTRIBUTE</div>
+                
+                <!-- The Document Image (Export your PDF page as a JPG and put it here) -->
+                <img src="/images/confidential-project.jpg" alt="Confidential Project" class="un-draggable">
+            </div>
+        </div>
+    </div>
+
+    <!-- Interactivity Scripts -->
+    <script>
+        // --- Accordion Logic ---
+        function toggleAccordion(element) {
+            const item = element.parentElement;
+            
+            // If clicking one that is already open, close it
+            if (item.classList.contains('active')) {
+                item.classList.remove('active');
+                return;
+            }
+            
+            // Close all others
+            document.querySelectorAll('.accordion-item').forEach(acc => {
+                acc.classList.remove('active');
+            });
+            
+            // Open the clicked one
+            item.classList.add('active');
+        }
+
+        // --- Secure Viewer Logic ---
+        function openSecureViewer() {
+            document.getElementById('secure-modal-overlay').classList.add('active');
+        }
+
+        function closeSecureViewer() {
+            document.getElementById('secure-modal-overlay').classList.remove('active');
+        }
+
+        // Close on background click
+        document.getElementById('secure-modal-overlay').addEventListener('click', function(event) {
+            if (event.target === this) {
+                closeSecureViewer();
+            }
+        });
+
+        // Extra layer of security: Prevent keyboard shortcuts for saving (Ctrl+S) while modal is open
+        document.addEventListener('keydown', function(e) {
+            if (document.getElementById('secure-modal-overlay').classList.contains('active')) {
+                if (e.ctrlKey && (e.key === 's' || e.key === 'p')) { // Blocks Save and Print
+                    e.preventDefault();
+                    alert("Saving and printing are disabled for this document.");
+                }
+            }
+        });
+    </script>
+
+    <!-- GLOBAL SECURITY SCRIPT -->
+    <script>
+        // 1. Disable Right-Click Menu entirely
+        document.addEventListener('contextmenu', event => event.preventDefault());
+
+        // 2. Disable Copy (Ctrl+C), Save (Ctrl+S), Inspect Element (F12), and View Source (Ctrl+U)
+        document.addEventListener('keydown', function(e) {
+            // F12 key
+            if (e.key === 'F12') {
+                e.preventDefault();
+            }
+            // Ctrl/Cmd shortcuts
+            if (e.ctrlKey || e.metaKey) {
+                if (e.key === 'c' || e.key === 'C' || // Copy
+                    e.key === 's' || e.key === 'S' || // Save
+                    e.key === 'u' || e.key === 'U') { // View Source
+                    e.preventDefault();
+                }
+                // Ctrl+Shift+I (Inspect Element)
+                if (e.shiftKey && (e.key === 'i' || e.key === 'I')) {
+                    e.preventDefault();
+                }
+            }
+        });
+    </script>
+</body>
+</html>

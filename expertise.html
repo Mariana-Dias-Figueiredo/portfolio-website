@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Areas of Expertise | Mariana Figueiredo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Google Material Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <!-- Top Navigation -->
+    <nav class="navbar">
+        <a href="/" class="logo" style="text-decoration: none; color: var(--text-color);">Mariana.</a>
+        <div class="nav-right">
+            <a href="/" class="btn-download">&larr; Back to Home</a>
+        </div>
+    </nav>
+
+    <main class="page-container wide">
+        <h1 class="page-title">Areas of Expertise</h1>
+        <p class="intro-text">Here you will find the areas where I have developed specialized knowledge and skills to bridge the gap between biological systems and optimized engineering solutions.</p>
+
+        <!-- 3D Flip Card Grid -->
+        <div class="expertise-grid">
+            
+            <!-- Card 1: Bioprocess Engineering -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <!-- FRONT -->
+                    <div class="flip-card-front">
+                        <span class="material-symbols-outlined expertise-icon">precision_manufacturing</span>
+                        <h3>Bioprocess Engineering</h3>
+                        <p class="flip-hint">Hover to explore &rarr;</p>
+                    </div>
+                    <!-- BACK -->
+                    <div class="flip-card-back">
+                        <h3>Techniques & Tools</h3>
+                        <ul>
+                            <li>Downstream Processing</li>
+                            <li>Enzymatic Bioprocessing</li>
+                            <li>Bioreactor Design</li>
+                            <li>Process Optimization</li>
+                            <li>Enzyme Immobilization</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2: Laboratory Research -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <span class="material-symbols-outlined expertise-icon">science</span>
+                        <h3>Laboratory Research</h3>
+                        <p class="flip-hint">Hover to explore &rarr;</p>
+                    </div>
+                    <div class="flip-card-back">
+                        <h3>Techniques & Tools</h3>
+                        <ul>
+                            <li>Protein Extraction & Purification</li>
+                            <li>Peptide Bioactivity Analysis</li>
+                            <li>Interfacial Phenomena Studies</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3: Data & Systems -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <span class="material-symbols-outlined expertise-icon">query_stats</span>
+                        <h3>Data Analysis</h3>
+                        <p class="flip-hint">Hover to explore &rarr;</p>
+                    </div>
+                    <div class="flip-card-back">
+                        <h3>Techniques & Tools</h3>
+                        <ul>
+                            <li>Response Surface Methodology</li>
+                            <li>JMP Software</li>
+                            <li>Microsoft Excel</li>
+                            <li>Python for Data Visualization</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4: Quality & Food Tech -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <span class="material-symbols-outlined expertise-icon">restaurant_menu</span>
+                        <h3>Food Technology</h3>
+                        <p class="flip-hint">Hover to explore &rarr;</p>
+                    </div>
+                    <div class="flip-card-back">
+                        <h3>Techniques & Tools</h3>
+                        <ul>
+                            <li>Alternative Protein Extraction</li>
+                            <li>Protein Techno-Functionality</li>
+                            <li>Nutrient Bioavailability and Bioaccessibility</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- GLOBAL SECURITY SCRIPT -->
+    <script>
+        // 1. Disable Right-Click Menu entirely
+        document.addEventListener('contextmenu', event => event.preventDefault());
+
+        // 2. Disable Copy (Ctrl+C), Save (Ctrl+S), Inspect Element (F12), and View Source (Ctrl+U)
+        document.addEventListener('keydown', function(e) {
+            // F12 key
+            if (e.key === 'F12') {
+                e.preventDefault();
+            }
+            // Ctrl/Cmd shortcuts
+            if (e.ctrlKey || e.metaKey) {
+                if (e.key === 'c' || e.key === 'C' || // Copy
+                    e.key === 's' || e.key === 'S' || // Save
+                    e.key === 'u' || e.key === 'U') { // View Source
+                    e.preventDefault();
+                }
+                // Ctrl+Shift+I (Inspect Element)
+                if (e.shiftKey && (e.key === 'i' || e.key === 'I')) {
+                    e.preventDefault();
+                }
+            }
+        });
+    </script>
+</body>
+</html>

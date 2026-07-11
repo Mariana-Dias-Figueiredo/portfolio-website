@@ -1,0 +1,1500 @@
+/* Color Palette & Base Setup */
+:root {
+    --bg-color: #d1dbe0;
+    --text-color: #4a3022;
+    --font-serif: 'Playfair Display', serif;
+    --font-sans: 'Inter', sans-serif;
+}
+
+body {
+    font-family: var(--font-sans);
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+
+    /* NEW: Prevents users from highlighting text on your website */
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Standard browsers */
+}
+
+/* Navbar */
+/* Navbar Update */
+/* Navbar Update */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 8vw 10px 8vw; 
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 30px; /* Space between Download CV and Menu */
+}
+
+.logo {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 1.2rem;
+    letter-spacing: -0.5px;
+}
+
+/* Dropdown Menu Styling */
+.menu-container {
+    position: relative;
+}
+
+.menu-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    border: none;
+    font-family: var(--font-sans);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-color);
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+}
+
+.menu-toggle:hover {
+    background-color: rgba(74, 48, 34, 0.1); 
+}
+
+.dropdown {
+    display: none; 
+    position: absolute;
+    top: 100%;
+    right: 0; /* Anchors the dropdown to the right side! */
+    left: auto; /* Removes the old left anchor */
+    margin-top: 15px;
+    background-color: #fafafa; 
+    border: 1px solid rgba(74, 48, 34, 0.1);
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    flex-direction: column;
+    min-width: 280px;
+    z-index: 100;
+    overflow: hidden;
+}
+
+.dropdown.show {
+    display: flex;
+}
+
+.dropdown a {
+    padding: 15px 20px;
+    text-decoration: none;
+    color: var(--text-color);
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 0.95rem;
+    border-bottom: 1px solid rgba(74, 48, 34, 0.05);
+    transition: background-color 0.2s;
+}
+
+.dropdown a:last-child {
+    border-bottom: none;
+}
+
+.dropdown a:hover {
+    background-color: rgba(74, 48, 34, 0.08); 
+}
+
+.btn-download {
+    background-color: var(--text-color);
+    color: white;
+    padding: 10px 24px;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: opacity 0.2s;
+}
+
+.btn-download:hover {
+    opacity: 0.8;
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* top: 0px | right: 8vw | bottom: 20px | left: 8vw */
+    padding: 0px 8vw 20px 8vw; 
+    gap: 40px;
+}
+
+.hero-text {
+    flex: 1;
+    max-width: 500px;
+}
+
+.hero h1 {
+    font-family: var(--font-serif);
+    font-size: 4rem;
+    line-height: 1.1;
+    margin: 0 0 30px 0;
+    font-weight: 400;
+}
+
+.hero p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Image & Button Wrapper - COMPLETELY RESET */
+.hero-image {
+    flex: 1;
+    display: flex;
+    
+    /* 1. This pulls it away from the right edge and moves it next to the text */
+    justify-content: flex-start; 
+    
+    align-items: center;
+    
+    /* 2. This is your joystick! Increase or decrease this number to slide it */
+    padding-left: 80px; 
+}
+
+.image-wrapper {
+    position: relative;
+    display: inline-block;
+    margin: 0; 
+    transform: none; 
+}
+
+.image-wrapper img {
+    max-width: 100%;
+    height: auto;
+    max-height: 450px; /* This locks in your perfect zoom */
+    object-fit: contain;
+    display: block;
+}
+
+/* The Cute "About me" Button */
+.btn-about {
+    position: absolute;
+    top: 66%; 
+    right: -29%; 
+    background-color: var(--text-color);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    box-shadow: 0 6px 15px rgba(74, 48, 34, 0.2);
+    transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
+    z-index: 10;
+}
+
+.btn-about:hover {
+    transform: translateY(-3px) scale(1.05);
+    background-color: #5c3c2b;
+    box-shadow: 0 8px 20px rgba(74, 48, 34, 0.3);
+}
+
+/* Rectangular Cards Section */
+.info-section {
+    /* top: 0px | right: 8vw | bottom: 60px | left: 8vw */
+    padding: 0px 8vw 60px 8vw;
+    flex-grow: 1;
+}
+
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.card {
+    background-color: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(74, 48, 34, 0.1);
+    padding: 25px; /* Shrunk from 30px to make the card more compact */
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+.card h3 {
+    font-family: var(--font-serif);
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.card ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 0 20px 0; /* Shrunk from 25px */
+}
+
+.card ul li {
+    font-size: 0.95rem;
+    margin-bottom: 8px; /* Pulled the bullet points slightly closer together */
+    line-height: 1.4;
+}
+
+/* Also apply the tightened margin to the education/experience text block */
+.edu-preview {
+    margin-bottom: 20px; /* Matches the new UL margin */
+    display: flex;
+    flex-direction: column; 
+    gap: 3px; 
+}
+
+/* Card Links */
+.card-link {
+    margin-top: auto; /* Magically pushes the link to the very bottom of the card */
+    align-self: flex-start; /* Keeps the underline only as wide as the text */
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.95rem;
+    border-bottom: 2px solid var(--text-color);
+    padding-bottom: 2px;
+    transition: opacity 0.2s;
+}
+
+.card-link:hover {
+    opacity: 0.6;
+}
+
+/* Footer Contacts */
+.contacts {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 40px;
+    border-top: 1px solid rgba(74, 48, 34, 0.1);
+}
+
+.contacts a {
+    font-family: var(--font-sans);
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.contacts a:hover {
+    text-decoration: underline;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 850px) {
+    .hero, .cards-container {
+        flex-direction: column;
+        grid-template-columns: 1fr;
+    }
+    .hero-image {
+        justify-content: center;
+        margin-top: 40px;
+    }
+}
+
+
+/* =========================================
+   ABOUT PAGE STYLES
+   ========================================= */
+.about-container {
+    padding: 40px 8vw;
+    max-width: 800px;
+    margin: 0 auto; /* Centers the content beautifully */
+}
+
+.page-title {
+    font-family: var(--font-serif);
+    font-size: 3rem;
+    margin-bottom: 15px;
+    font-weight: 400;
+}
+
+.intro-text {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    margin-bottom: 60px;
+    opacity: 0.8;
+}
+
+.section-title {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid rgba(74, 48, 34, 0.2); /* Elegant dividing line */
+    padding-bottom: 15px;
+    font-weight: 600;
+}
+
+/* --- Interactive Timeline --- */
+/* --- Horizontal Image Timeline --- */
+.horizontal-timeline-wrapper {
+    width: 100%;
+    overflow-x: auto; /* Allows scrolling if there are many points */
+    padding: 60px 0 210px 0; /* Extra padding on bottom for the text cards */
+    margin-bottom: 40px;
+    
+    /* Hides the ugly scrollbar but keeps the scroll function */
+    -ms-overflow-style: none;  
+    scrollbar-width: none;  
+}
+
+.horizontal-timeline-wrapper::-webkit-scrollbar { 
+    display: none; 
+}
+
+.horizontal-timeline {
+    display: inline-flex; /* Keeps items in a row */
+    align-items: center;
+    position: relative;
+    padding: 0 40px;
+    min-width: 100%;
+}
+
+.ht-line {
+    position: absolute;
+    top: 50px; /* Aligns with the center of the small images */
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: rgba(74, 48, 34, 0.3);
+    z-index: 1;
+}
+
+.ht-item {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 80px; /* Space between each point */
+    cursor: pointer;
+}
+
+
+/* The Description Box (Hidden by default) */
+.ht-info {
+    position: absolute;
+    top: 130px; /* Pushed below the image */
+    width: 220px;
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(74, 48, 34, 0.1);
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.4s ease;
+    pointer-events: none; /* Stops it from blocking mouse clicks */
+}
+
+.ht-info h3 {
+    margin: 0 0 10px 0;
+    font-family: var(--font-serif);
+    color: var(--text-color);
+    font-size: 1.4rem;
+}
+
+.ht-info p {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* --- THE HOVER MAGIC --- */
+/* The new year label sitting under the circles */
+.ht-year {
+    margin-top: 15px;
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-color);
+    transition: opacity 0.3s ease;
+}
+
+/* Fades the simple year label out when the big info card drops down */
+.ht-item:hover .ht-year {
+    opacity: 0;
+}
+
+
+/* --- Timeline Scrolling Gallery --- */
+.ht-gallery-container {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%; /* Starts as a perfect circle */
+    border: 4px solid var(--bg-color);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    background-color: #fff;
+    overflow: hidden; /* Hides the rest of the scrolling images */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* 1. The container gets bigger and less rounded on hover */
+.ht-item:hover .ht-gallery-container {
+    width: 200px; /* Wider to fit the scrolling text */
+    height: 200px;
+    border-radius: 20px;
+    box-shadow: 0 15px 30px rgba(74, 48, 34, 0.2);
+    transform: translateY(-20px);
+}
+
+/* The track holds all the pictures side by side */
+.ht-scrolling-track {
+    display: flex;
+    height: 100%;
+    width: max-content;
+    /* We REMOVED the animation from here so it defaults to a completely still, static state (Image 1) */
+}
+
+/* 2. Attaching the animation ONLY to the hover state forces it to restart from 0% every single time! */
+.ht-item:hover .ht-scrolling-track {
+    animation: scrollAbout 15s linear infinite; 
+}
+
+/* Individual Picture and Legend Wrapper */
+.ht-gallery-item {
+    width: 100px; 
+    height: 100%;
+    flex-shrink: 0;
+    position: relative; /* REQUIRED so the legend knows where the top is! */
+    display: flex;
+    flex-direction: column;
+    transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.ht-item:hover .ht-gallery-item {
+    width: 200px; 
+}
+
+.ht-gallery-item img {
+    width: 100%;
+    height: 100px; 
+    object-fit: cover;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Shrinks the photo up slightly AND pushes it down to make room for the legend at the top */
+.ht-item:hover .ht-gallery-item img {
+    height: 140px; 
+    margin-top: 60px; /* Pushes the image down to leave space for the text! */
+}
+
+/* The small text - now positioned perfectly at the top! */
+.ht-legend {
+    position: absolute; /* Takes the text out of the normal flow */
+    top: 0; /* Pins it to the superior side */
+    left: 0;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-style: italic;
+    text-align: center;
+    margin: 0;
+    padding: 0 15px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    color: var(--text-color);
+    box-sizing: border-box;
+}
+
+.ht-item:hover .ht-legend {
+    opacity: 1; 
+}
+
+@keyframes scrollAbout {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-50%)); }
+}
+
+/* 2. The text fades in and drops down */
+.ht-item:hover .ht-info {
+    opacity: 1;
+    transform: translateY(70px); /* Changed from 0 to 20px so it sits under the new bigger box */
+}
+
+/* --- Interactive Hobbies Grid --- */
+.hobbies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 20px;
+    margin-bottom: 80px;
+}
+
+.hobby-card {
+    background: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(74, 48, 34, 0.1);
+    border-radius: 12px;
+    padding: 30px 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+/* The magic hover effect: Lifts up and inverts colors */
+.hobby-card:hover {
+    transform: translateY(-10px); 
+    background: var(--text-color);
+    color: white; 
+    box-shadow: 0 10px 20px rgba(74, 48, 34, 0.2);
+}
+
+.hobby-icon {
+    font-size: 2.8rem; /* Made them slightly bigger since icons are thinner than emojis */
+    margin-bottom: 15px;
+    display: block;
+    color: var(--text-color); /* Sets them to your brown theme color */
+    transition: color 0.3s ease;
+}
+
+/* This makes sure the icon turns white when you hover over the card */
+.hobby-card:hover .hobby-icon {
+    color: white; 
+}
+
+
+/* =========================================
+   SUBPAGE LAYOUT (Used for About, Education, etc)
+   ========================================= */
+.page-container {
+    padding: 40px 8vw;
+    max-width: 800px;
+    margin: 0 auto; 
+}
+
+/* --- Homepage Card 3 Education Preview --- */
+.edu-preview {
+    margin-bottom: 25px; 
+    display: flex;
+    flex-direction: column; /* Stacks the items on top of each other */
+    gap: 3px; /* Adds a tiny bit of breathing room between the lines */
+}
+
+.edu-preview .degree {
+    font-size: 0.95rem; /* Matches the card ul li size exactly */
+    line-height: 1.4;   /* Matches the card ul li line-height exactly */
+    /* By removing the explicit font-family and font-weight, it will now inherit identically to Cards 1 and 2 */
+}
+
+
+.edu-preview .date {
+    font-style: italic; /* Italicized date */
+    font-size: 0.9rem; /* Smaller font size */
+    opacity: 0.8;
+}
+
+.edu-preview .grade {
+    font-weight: 400; /* Normal font weight */
+    font-size: 0.9rem; /* Smaller font size, matching the date */
+    opacity: 0.8;
+}
+
+/* --- Vertical Timeline for Formal Education --- */
+.vertical-timeline {
+    position: relative;
+    padding-left: 40px;
+    border-left: 2px solid var(--text-color);
+    margin-bottom: 80px;
+}
+
+.v-timeline-item {
+    position: relative;
+    margin-bottom: 40px;
+    background: rgba(255, 255, 255, 0.4);
+    padding: 25px 30px;
+    border-radius: 8px;
+    border-left: 4px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.v-timeline-item:hover {
+    transform: translateX(5px);
+    border-left: 4px solid var(--text-color);
+    box-shadow: 0 8px 25px rgba(74, 48, 34, 0.08);
+}
+
+.v-timeline-dot {
+    position: absolute;
+    left: -49px; 
+    top: 35px;
+    width: 16px;
+    height: 16px;
+    background-color: var(--bg-color);
+    border: 4px solid var(--text-color);
+    border-radius: 50%;
+}
+
+.v-timeline-content h3 {
+    margin: 0 0 5px 0;
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+}
+
+.academic-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 15px;
+    font-size: 0.85rem;
+    font-style: italic;
+    opacity: 0.8;
+}
+
+.academic-meta .grade {
+    font-weight: 700;
+    font-style: normal;
+    color: var(--text-color);
+}
+
+.v-timeline-content p {
+    margin: 0 0 10px 0;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.highlight-units {
+    font-size: 0.9rem !important;
+    background-color: rgba(74, 48, 34, 0.05);
+    padding: 10px 15px;
+    border-radius: 6px;
+    margin-top: 15px !important;
+}
+
+/* --- Complementary Education Cards --- */
+.courses-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 80px;
+}
+
+.course-card {
+    background: transparent;
+    border: 1px solid rgba(74, 48, 34, 0.2);
+    padding: 25px 30px;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+}
+
+/* Certificate Image Styling */
+/* --- Complementary Education Cards Layout Update --- */
+.course-header {
+    display: flex;
+    align-items: center; /* Aligns the miniature and text perfectly on the horizontal axis */
+    gap: 18px; /* Adds breathing room between the picture and the text */
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(74, 48, 34, 0.1);
+    padding-bottom: 15px;
+}
+
+/* The clickable wrapper around the miniature */
+.course-cert-link {
+    flex-shrink: 0; /* Prevents the image from being squished if the title is long */
+    display: block;
+    border-radius: 4px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Magically lifts the tiny image up when you hover over it */
+.course-cert-link:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 4px 12px rgba(74, 48, 34, 0.15);
+}
+
+/* The actual image thumbnail */
+.course-cert-mini {
+    height: 52px; /* Perfectly matches the combined height of the title and subtitle */
+    width: auto; /* Keeps the proportions exact */
+    max-width: 80px; /* Prevents weirdly wide images */
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid rgba(74, 48, 34, 0.2);
+    display: block;
+}
+
+.course-header-text {
+    flex-grow: 1; /* Takes up the rest of the space */
+}
+
+/* Clean up the old margins inside the new layout */
+.course-header-text h4 {
+    margin: 0 0 4px 0;
+    line-height: 1.2;
+}
+
+.course-header-text .course-meta {
+    margin-bottom: 0;
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.course-card:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.course-card h4 {
+    margin: 0 0 5px 0;
+    font-family: var(--font-serif);
+    font-size: 1.3rem;
+}
+
+.course-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    font-style: italic;
+    opacity: 0.7;
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(74, 48, 34, 0.1);
+    padding-bottom: 10px;
+}
+
+.course-card p {
+    margin: 0;
+    line-height: 1.5;
+    font-size: 0.95rem;
+}
+
+/* =========================================
+   POP-UP MODAL WINDOW STYLES
+   ========================================= */
+.modal-overlay {
+    display: none; /* Invisible by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Dark semi-transparent background */
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(4px); /* Adds a classy blur to the website behind it */
+}
+
+/* Javascript adds this class to make it visible */
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal-content-box {
+    background-color: var(--bg-color); /* Matches your website theme */
+    padding: 40px;
+    border-radius: 12px;
+    max-width: 650px;
+    width: 90%;
+    position: relative;
+    box-shadow: 0 15px 40px rgba(74, 48, 34, 0.3);
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+/* The 'X' Button */
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    background: none;
+    border: none;
+    font-size: 2.5rem;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: opacity 0.2s;
+    line-height: 1;
+}
+
+.modal-close:hover {
+    opacity: 0.5;
+}
+
+/* Inside the Pop-Up */
+.modal-detail h3 {
+    margin-top: 0;
+    font-family: var(--font-serif);
+    font-size: 2.2rem;
+    color: var(--text-color);
+}
+
+.modal-detail p {
+    line-height: 1.6;
+    margin-bottom: 25px;
+    font-size: 1.05rem;
+}
+
+/* The 2 Pictures side-by-side */
+.modal-images {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.modal-images img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(74, 48, 34, 0.1);
+}
+
+/* For pop-up windows with only one centered picture */
+.modal-images.single {
+    grid-template-columns: 1fr; /* Forces a single column instead of two */
+    max-width: 350px; /* Keeps the picture from getting too gigantic */
+    margin: 0 auto; /* Centers the picture block perfectly */
+}
+
+/* Keeps the image and the legend stacked neatly together */
+.img-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Adds a tiny bit of space between the picture and the text */
+}
+
+/* The Legend Text Formatting */
+.img-legend {
+    font-size: 0.85rem; /* Smaller font size */
+    font-style: italic; /* Italicized */
+    text-align: center; /* Centers the text under the photo */
+    margin: 0 !important; /* Overrides any other paragraph margins */
+    opacity: 0.8; /* Makes it slightly softer than the main text */
+}
+
+
+/* =========================================
+   EDUCATION PAGE - INTERACTIVE GALLERY
+   ========================================= */
+
+/* Make this specific page wider to fit two columns */
+.page-container.wide {
+    max-width: 1100px; 
+}
+
+.edu-split-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start; /* Keeps items at the top */
+    margin-bottom: 80px;
+}
+
+.edu-split-layout .vertical-timeline {
+    margin-bottom: 0; /* Clears the old margin */
+}
+
+/* The Box that holds the images */
+.gallery-display-area {
+    position: sticky; /* Magically scrolls down the screen with you */
+    top: 120px; 
+    height: 350px;
+    background: rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(74, 48, 34, 0.1);
+    border-radius: 12px;
+    overflow: hidden; /* Hides images outside the box */
+    display: flex;
+    align-items: center;
+    box-shadow: inset 0 4px 15px rgba(0,0,0,0.02);
+}
+
+.gallery-default {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    color: var(--text-color);
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+}
+
+.edu-gallery {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s;
+    display: flex;
+    align-items: center;
+}
+
+.edu-gallery.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* The Continuous Scroll Animation */
+.scrolling-track {
+    display: flex;
+    gap: 20px;
+    padding: 0 20px;
+    /* 20s dictates the speed. Lower = faster! */
+    animation: scrollGallery 25s linear infinite; 
+}
+
+/* PAUSES the animation when the user puts their mouse on a picture to read it! */
+.gallery-display-area:hover .scrolling-track {
+    animation-play-state: paused;
+}
+
+.gallery-item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 260px; 
+    flex-shrink: 0; 
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(74, 48, 34, 0.1);
+}
+
+/* Reusing the legend CSS we made for the About page */
+.gallery-item .img-legend {
+    font-size: 0.85rem;
+    font-style: italic;
+    text-align: center;
+    margin: 0;
+    opacity: 0.8;
+}
+
+/* For galleries with only one static image (High School) */
+.static-gallery {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.static-gallery .gallery-item {
+    /* Keeps the image the exact same size as the scrolling ones, but centers it */
+    margin: 0 auto; 
+}
+
+@keyframes scrollGallery {
+    0% { transform: translateX(0); }
+    /* Shifts it perfectly by 50% to create a seamless infinite loop */
+    100% { transform: translateX(calc(-50% - 10px)); } 
+}
+
+/* Mobile Responsiveness: Stacks them on small screens */
+@media (max-width: 900px) {
+    .edu-split-layout {
+        grid-template-columns: 1fr;
+    }
+    .gallery-display-area {
+        position: relative;
+        top: 0;
+        margin-bottom: 40px;
+    }
+}
+
+/* =========================================
+   AREAS OF EXPERTISE - 3D FLIP CARDS
+   ========================================= */
+
+.expertise-grid {
+    display: grid;
+    /* This forces exactly 4 equal-sized columns on a single line! */
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 25px; /* Slightly reduced the gap so they fit comfortably */
+    margin-top: 50px;
+    margin-bottom: 80px;
+}
+
+/* --- Mobile Responsiveness --- */
+/* If the screen gets too small (like a tablet or phone), this stops them from squishing into unreadable slivers */
+@media (max-width: 1000px) {
+    .expertise-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 rows of 2 on tablets */
+    }
+}
+
+@media (max-width: 650px) {
+    .expertise-grid {
+        grid-template-columns: 1fr; /* 1 single stack on phones */
+    }
+}
+
+/* The Container gives the 3D space perspective */
+.flip-card {
+    background-color: transparent;
+    height: 320px;
+    perspective: 1000px; /* How deep the 3D effect feels */
+    cursor: pointer;
+}
+
+/* The inner wrapper that actually rotates */
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    /* The cubic-bezier makes the spin feel bouncy and fluid, not robotic! */
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-style: preserve-3d;
+}
+
+/* Trigger the flip on hover */
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+/* Shared styling for both the Front and Back of the card */
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    /* This hides the back of the element when it's facing away */
+    backface-visibility: hidden;
+    border-radius: 12px;
+    padding: 35px 25px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 30px rgba(74, 48, 34, 0.05);
+}
+
+/* --- THE FRONT (Default view) --- */
+.flip-card-front {
+    background-color: rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(74, 48, 34, 0.1);
+    justify-content: center;
+    align-items: center;
+}
+
+.expertise-icon {
+    font-size: 4.5rem;
+    color: var(--text-color);
+    margin-bottom: 20px;
+}
+
+.flip-card-front h3 {
+    margin: 0;
+    font-size: 1.6rem;
+    font-family: var(--font-serif);
+    line-height: 1.2;
+}
+
+.flip-hint {
+    margin-top: 15px;
+    font-size: 0.9rem;
+    font-style: italic;
+    opacity: 0.6;
+}
+
+/* --- THE BACK (Hover view) --- */
+.flip-card-back {
+    background-color: var(--text-color);
+    color: white;
+    transform: rotateY(180deg); /* Pre-flips the back so it's ready */
+    justify-content: flex-start;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.flip-card-back ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.flip-card-back h3 {
+    margin: 0 0 15px 0; /* Reduced margin from 20px */
+    font-size: 1.15rem; /* Shrunk the header from 1.4rem */
+    font-family: var(--font-serif);
+    color: white;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 10px; /* Tighter padding under the line */
+    width: 100%;
+}
+
+.flip-card-back li {
+    margin-bottom: 8px; /* Pulled the bullet points much closer together (was 15px) */
+    font-size: 0.85rem; /* Shrunk the text size */
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 1.3; /* Tighter line height for multi-line bullets */
+}
+
+/* Adds a sleek custom arrow bullet point */
+.flip-card-back li::before {
+    content: "▹";
+    color: var(--bg-color);
+    font-size: 1.1rem; /* Shrunk the arrow slightly to match the smaller text */
+    line-height: 1;
+    margin-top: 1px; /* Gently pushes the arrow down so it centers with the smaller font */
+}
+
+/* =========================================
+   PROJECTS & EXPERIENCE PAGE
+   ========================================= */
+
+/* --- Interactive Accordion --- */
+.accordion-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 70px;
+}
+
+.accordion-item {
+    background: rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(74, 48, 34, 0.15);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.accordion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 30px;
+    cursor: pointer;
+    background: transparent;
+    transition: background 0.3s;
+}
+
+.accordion-header:hover {
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.acc-title h3 {
+    margin: 0 0 5px 0;
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+}
+
+.acc-title span {
+    display: block; /* This is the magic command that forces a new line! */
+    font-size: 0.9rem;
+    font-style: italic;
+    opacity: 0.8;
+    margin-bottom: 4px; /* Adds a tiny bit of breathing room between the lab name and the date */
+}
+
+/* This just ensures the very last item doesn't add unnecessary extra space at the bottom */
+.acc-title span:last-child {
+    margin-bottom: 0;
+}
+
+.acc-icon {
+    font-size: 2rem;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* The expanding body area */
+.accordion-body {
+    max-height: 0; /* Hidden by default */
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+}
+
+.acc-content {
+    padding: 0 30px 25px 30px;
+    border-top: 1px solid transparent;
+}
+
+/* --- Styling for the intro sentence before the checkmarks --- */
+.experience-intro {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-top: 15px;
+    margin-bottom: 12px; /* This dictates the exact space BEFORE the bullet points! */
+}
+
+/* Let's also remove the top margin from the list so they don't fight for space */
+.experience-list {
+    list-style: none;
+    padding: 0;
+    margin: 0; /* Changed this from 15px to 0 */
+}
+
+.experience-list li {
+    position: relative;
+    padding-left: 28px; /* Makes room for the checkmark */
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* Draws the actual checkmark icon */
+.experience-list li::before {
+    content: "✔"; /* The checkmark symbol */
+    position: absolute;
+    left: 0;
+    top: 0px;
+    color: var(--text-color); /* Matches your exact brown theme color */
+    font-size: 1.1rem;
+}
+
+.acc-tags {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.acc-tags span {
+    background: rgba(74, 48, 34, 0.08);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/* ACTIVE STATE: When the accordion is clicked */
+.accordion-item.active {
+    box-shadow: 0 8px 25px rgba(74, 48, 34, 0.08);
+    background: rgba(255, 255, 255, 0.7);
+}
+
+.accordion-item.active .accordion-body {
+    max-height: 400px; /* Expands smoothly */
+}
+
+.accordion-item.active .acc-content {
+    border-top: 1px solid rgba(74, 48, 34, 0.1);
+}
+
+.accordion-item.active .acc-icon {
+    transform: rotate(180deg); /* Flips the arrow upside down */
+}
+
+/* --- Projects Grid --- */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 80px;
+}
+
+.proj-card {
+    background: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(74, 48, 34, 0.1);
+    border-radius: 12px;
+    padding: 35px 30px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.proj-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(74, 48, 34, 0.1);
+}
+
+.proj-icon {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: var(--text-color);
+}
+
+.proj-card h3 {
+    margin: 0 0 15px 0;
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+}
+
+.proj-card p {
+    line-height: 1.5;
+    margin-bottom: 25px;
+    flex-grow: 1;
+}
+
+/* Project Year & Association Text */
+.proj-meta {
+    display: flex;
+    gap: 8px;
+    font-size: 0.85rem;
+    font-style: italic;
+    opacity: 0.8;
+    margin-bottom: 15px; /* Gives nice breathing room before the paragraph starts */
+    flex-wrap: wrap; /* Keeps it safe on tiny mobile screens */
+}
+
+/* --- Custom Interactive Tooltip Link --- */
+.assoc-link {
+    color: var(--text-color);
+    text-decoration: underline;
+    text-decoration-color: rgba(74, 48, 34, 0.3); /* Soft underline */
+    position: relative; /* Crucial so the tooltip knows where to attach */
+    cursor: pointer;
+    font-weight: 600;
+    font-style: normal; /* Makes it pop out from the italic text */
+    transition: color 0.2s, text-decoration-color 0.2s;
+}
+
+.assoc-link:hover {
+    text-decoration-color: var(--text-color);
+}
+
+/* The Mini Window (Tooltip Box) */
+.assoc-link::before {
+    content: attr(data-tooltip); /* Magically reads the text from your HTML! */
+    position: absolute;
+    bottom: calc(100% + 10px); /* Positions it perfectly above the text */
+    left: 50%;
+    transform: translateX(-50%) translateY(5px); /* Centers it and preps the animation */
+    background-color: var(--text-color);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-family: var(--font-sans);
+    font-style: normal;
+    white-space: nowrap; /* Stops the text from wrapping to two lines */
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    pointer-events: none; /* Stops the tooltip from flickering if the mouse hits it */
+    z-index: 100;
+}
+
+/* The tiny triangle pointing down */
+.assoc-link::after {
+    content: "";
+    position: absolute;
+    bottom: calc(100% + 4px);
+    left: 50%;
+    transform: translateX(-50%) translateY(5px);
+    border-width: 6px;
+    border-style: solid;
+    border-color: var(--text-color) transparent transparent transparent;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+    pointer-events: none;
+    z-index: 100;
+}
+
+/* THE HOVER EFFECT: Makes them visible and slides them up slightly! */
+.assoc-link:hover::before,
+.assoc-link:hover::after {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Wrapper for multiple links at the bottom of the card */
+.proj-actions {
+    display: flex;
+    gap: 25px; /* Adds space between the Abstract and Highlights links */
+    margin-top: auto; /* Pushes the links to the very bottom of the card */
+    flex-wrap: wrap;
+}
+
+/* Override the old single-link margin so the dual-container handles the layout */
+.proj-card .card-link {
+    margin-top: 0; 
+}
+
+/* Styling for the secure button */
+.btn-secure {
+    background: var(--text-color);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: auto;
+    transition: background 0.2s;
+}
+
+.btn-secure:hover {
+    background: #5c3c2b;
+}
+
+/* --- Secure Document Viewer Modal --- */
+.secure-content-box {
+    background-color: #efeff0; 
+    padding: 30px;
+    border-radius: 12px;
+    max-width: 800px;
+    width: 95%;
+    position: relative;
+    max-height: 95vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+}
+
+.secure-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.secure-header h3 {
+    margin: 10px 0 5px 0;
+    font-family: var(--font-serif);
+}
+
+.secure-header p {
+    margin: 0;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #d9534f;
+}
+
+/* The wrapper that prevents interaction */
+.protected-document {
+    position: relative;
+    border: 1px solid #ccc;
+    background: white;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    
+    /* CSS logic to stop text highlighting and dragging */
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/* The actual image */
+.un-draggable {
+    width: 100%;
+    height: auto;
+    display: block;
+    pointer-events: none; /* STOPS dragging and right clicking the image directly */
+}
+
+/* The repeating watermark text */
+.watermark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-30deg);
+    font-size: 3rem;
+    font-weight: 900;
+    color: rgba(0, 0, 0, 0.08); /* Barely visible so it doesn't block reading */
+    white-space: nowrap;
+    pointer-events: none; /* Clicks pass right through it */
+    z-index: 10;
+}
