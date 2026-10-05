@@ -90,10 +90,10 @@ module.exports = {
           }
         },
         {
-          name: { en: "<em>In silico</em> Peptide Screening", pt: "Rastreio <em>in silico</em> de Péptidos" },
+          name: { en: "Peptide Screening", pt: "Rastreio de Péptidos" },
           detail: {
-            en: "Identified 30 potential anti-hypertensive peptides through computational screening.",
-            pt: "Identificação de 30 potenciais péptidos anti-hipertensivos por rastreio computacional."
+            en: "Identified 30 potential anti-hypertensive peptides through <em>in silico</em> computational screening.",
+            pt: "Identificação de 30 potenciais péptidos anti-hipertensivos por rastreio computacional <em>in silico</em>."
           }
         },
         {
