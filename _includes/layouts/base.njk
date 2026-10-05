@@ -1,0 +1,147 @@
+{#- The frame shared by every page: <head>, menu, footer and scripts. -#}
+{%- set otherLang = "en" if lang == "pt" else "pt" -%}
+{%- set homeUrl = "/" | localeUrl(lang) -%}
+{%- set pageTitle = ui.titles[pageKey] | t(lang) -%}
+{%- set pageDescription = ui.description | t(lang) -%}
+<!DOCTYPE html>
+<html lang="{{ 'pt-PT' if lang == 'pt' else 'en' }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ pageTitle }}</title>
+    <meta name="description" content="{{ pageDescription }}">
+    <meta name="theme-color" content="#d1dbe0">
+
+    <!-- Same page in the other language (helps Google show the right one) -->
+    <link rel="alternate" hreflang="en" href="{{ site.url }}{{ page.url | localeUrl('en') }}">
+    <link rel="alternate" hreflang="pt-PT" href="{{ site.url }}{{ page.url | localeUrl('pt') }}">
+    {%- if site.url %}
+    <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+    {%- endif %}
+
+    <!-- Link preview card (LinkedIn, WhatsApp, email, Slack...) -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="{{ site.name }}">
+    <meta property="og:title" content="{{ pageTitle }}">
+    <meta property="og:description" content="{{ pageDescription }}">
+    <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+    <meta property="og:image" content="{{ site.url }}/images/brand/link-preview-{{ lang }}.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="{{ ui.previewAlt | t(lang) }}">
+    <meta property="og:locale" content="{{ 'pt_PT' if lang == 'pt' else 'en_GB' }}">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="icon" href="/images/brand/favicon.ico" sizes="any">
+    <link rel="icon" href="/images/brand/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/images/brand/apple-touch-icon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <!-- Only the icons the site uses are downloaded. Add new icon names here, in alphabetical order. -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=arrow_upward,bakery_dining,biotech,call,check,close,content_copy,emoji_events,expand_more,handyman,location_on,mail,medication,menu,menu_book,movie,open_in_new,pets,photo_library,precision_manufacturing,query_stats,restaurant_menu,school,science,swipe,translate,volunteer_activism,water,workspace_premium&display=block" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <script>
+        // Lets the CSS know JavaScript is on, and whether the device has a mouse (hover) or is touch-only
+        document.documentElement.classList.add('js');
+        if (window.matchMedia('(hover: hover)').matches) document.documentElement.classList.add('can-hover');
+    </script>
+</head>
+<body class="page-{{ pageKey }}">
+    <a class="skip-link" href="#main">{{ "Saltar para o conteúdo" if lang == "pt" else "Skip to content" }}</a>
+
+    <header class="site-header">
+        <nav class="navbar container" aria-label="{{ ui.nav.mainNav | t(lang) }}">
+            <a href="{{ homeUrl }}" class="logo" aria-label="Mariana Figueiredo – {{ ui.nav.home | t(lang) }}">
+                <img src="/images/brand/favicon.svg" alt="" class="logo-mark" width="40" height="40">
+            </a>
+
+            <div class="nav-links" id="navLinks">
+                {%- for key in ["about", "expertise", "projects", "education"] %}
+                <a href="{{ ('/' + key + '/') | localeUrl(lang) }}"{% if pageKey == key %} aria-current="page"{% endif %}>{{ ui.nav[key] | t(lang) }}</a>
+                {%- endfor %}
+                <a href="#contacts">{{ ui.nav.contact | t(lang) }}</a>
+                <a href="{{ site.cv }}" download="Mariana_Figueiredo_CV.pdf" class="btn-download nav-cv-mobile">{{ ui.cvButton | t(lang) }} &darr;</a>
+            </div>
+
+            <div class="nav-right">
+                <div class="lang-switch" role="group" aria-label="{{ ui.nav.switchTo | t(lang) }}">
+                    <a href="{{ page.url | localeUrl('en') }}" hreflang="en" lang="en"{% if lang == "en" %} aria-current="true"{% endif %}>EN</a>
+                    <a href="{{ page.url | localeUrl('pt') }}" hreflang="pt-PT" lang="pt-PT"{% if lang == "pt" %} aria-current="true"{% endif %}>PT</a>
+                </div>
+                <a href="{{ site.cv }}" download="Mariana_Figueiredo_CV.pdf" class="btn-download nav-cv-desktop">{{ ui.cvButton | t(lang) }} &darr;</a>
+                <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navLinks"
+                        data-label-open="{{ ui.nav.menu | t(lang) }}" data-label-close="{{ ui.nav.close | t(lang) }}">
+                    <span class="material-symbols-outlined" aria-hidden="true">menu</span>
+                    <span class="menu-toggle-label">{{ ui.nav.menu | t(lang) }}</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main id="main" class="container">
+        {{ content | safe }}
+    </main>
+
+    <footer class="site-footer" id="contacts">
+        <div class="container footer-inner">
+            <div class="footer-cta">
+                <h2>{{ ui.footer.heading | t(lang) }}</h2>
+                <p>{{ ui.footer.text | t(lang) }}</p>
+
+                <div class="footer-actions">
+                    <button type="button" class="btn-copy" data-copy="{{ site.email }}" data-copied-label="{{ ui.footer.copied | t(lang) }}">
+                        <span class="material-symbols-outlined" aria-hidden="true">content_copy</span>
+                        <span class="btn-copy-text">{{ site.email }}</span>
+                        <span class="btn-copy-hint">{{ ui.footer.copyEmail | t(lang) }}</span>
+                    </button>
+                    <span class="sr-only" aria-live="polite" id="copyStatus"></span>
+                </div>
+
+                <ul class="footer-links">
+                    <li>
+                        <a href="{{ site.linkedin }}" target="_blank" rel="noopener">
+                            <svg class="icon-linkedin" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+                            LinkedIn
+                        </a>
+                    </li>
+                    <li>
+                        <a href="mailto:{{ site.email }}">
+                            <span class="material-symbols-outlined" aria-hidden="true">mail</span>
+                            {{ ui.footer.email | t(lang) }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tel:{{ site.phone }}">
+                            <span class="material-symbols-outlined" aria-hidden="true">call</span>
+                            {{ site.phoneDisplay }}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Full logo: the MF mark with the name and title -->
+            <a href="{{ homeUrl }}" class="footer-logo" aria-label="Mariana Figueiredo – {{ ui.nav.home | t(lang) }}">
+                <img src="/images/brand/logo-mark-light.svg" alt="" width="64" height="64">
+                <span class="footer-logo-text">
+                    <span class="footer-logo-name">Mariana Figueiredo<span class="dot">.</span></span>
+                    <span class="footer-logo-tagline">{{ ui.role | t(lang) }} &middot; {{ ui.location | t(lang) }}</span>
+                </span>
+            </a>
+        </div>
+
+        <div class="container">
+            <div class="footer-bottom">
+                <span>&copy; {{ site.year }} Mariana Figueiredo</span>
+                <a href="#main" class="back-to-top">
+                    {{ ui.footer.backToTop | t(lang) }}
+                    <span class="material-symbols-outlined" aria-hidden="true">arrow_upward</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/main.js" defer></script>
+</body>
+</html>

@@ -1,338 +1,152 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Education | Mariana Figueiredo</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/style.css">
-</head>
-<body>
-    <!-- Simplified Top Navigation -->
-    <nav class="navbar">
-        <a href="/" class="logo" style="text-decoration: none; color: var(--text-color);">Mariana.</a>
-        <div class="nav-right">
-            <a href="/" class="btn-download">&larr; Back to Home</a>
-        </div>
-    </nav>
+---
+pagination:
+  data: langs
+  size: 1
+  alias: lang
+permalink: "{{ '/pt' if lang == 'pt' }}/education/"
+layout: layouts/base.njk
+pageKey: education
+---
+{#- One photo strip, used both in the side panel (computer) and inside each degree (phone) -#}
+{%- macro photoStrip(photos, lang) -%}
+{%- if photos | length == 1 -%}
+<div class="static-gallery">
+    <figure class="gallery-item">
+        <img src="{{ photos[0].src }}" alt="{{ photos[0].caption | t(lang) }}" loading="lazy">
+        <figcaption class="img-legend">{{ photos[0].caption | t(lang) }}</figcaption>
+    </figure>
+</div>
+{%- else -%}
+<div class="scrolling-track">
+    {%- for round in [1, 2] %}
+    {%- for photo in photos %}
+    <figure class="gallery-item"{% if round == 2 %} aria-hidden="true"{% endif %}>
+        <img src="{{ photo.src }}" alt="{{ (photo.caption | t(lang)) if round == 1 else '' }}" loading="lazy">
+        <figcaption class="img-legend">{{ photo.caption | t(lang) }}</figcaption>
+    </figure>
+    {%- endfor %}
+    {%- endfor %}
+</div>
+{%- endif -%}
+{%- endmacro -%}
 
-    <main class="page-container wide">
-        <h1 class="page-title">Education</h1>
-        <p class="intro-text">My academic foundation and continuous learning journey in the world of biological engineering.</p>
+<div class="page-container">
+    <h1 class="page-title">{{ education.title | t(lang) }}</h1>
+    <p class="intro-text">{{ education.intro | t(lang) }}</p>
 
-        <h2 class="section-title">Academic Background</h2>
-        
-        <!-- The New Two-Column Layout -->
-        <div class="edu-split-layout">
-            
-            <!-- LEFT COLUMN: The Timeline -->
-            <div class="vertical-timeline">
-                <!-- Degree 1 -->
-                <div id="master-degree" class="v-timeline-item" data-gallery="gallery-master">
-                    <div class="v-timeline-dot"></div>
-                    <div class="v-timeline-content">
-                        <h3>Master in Bioengineering</h3>
-                        <div class="academic-meta">
-                            <span>Sep 2024 &ndash; Present</span>
-                            <span>Faculty of Engineering of University of Porto</span>
-                            <span class="grade">Grade ---</span>
-                        </div>
-                        <p>Specialization in Biological Engineering. Focused on designing and optimizing biological systems for industrial applications, including the extraction and purification of bioactive peptides from alternative proteins.</p>
-                        <p class="highlight-units"><strong>Key Curricular Units:</strong> Separation Processes in Biotechnology, Food Technology, Protein Engineering, Management and Inovation in Bioengineering, Biomolecular and Metabolic Engineering, Quality and Security.</p>
+    <h2 class="section-title">{{ education.academicTitle | t(lang) }}</h2>
+
+    <div class="edu-split-layout">
+        <!-- Degrees: hover (computer) or tap a degree to show its photos -->
+        <div class="vertical-timeline">
+            {%- for degree in education.degrees %}
+            <div id="{{ degree.id }}" class="v-timeline-item" data-gallery="gallery-{{ degree.id }}" tabindex="0">
+                <div class="v-timeline-dot" aria-hidden="true"></div>
+                <div class="v-timeline-content">
+                    <h3>{{ degree.title | t(lang) }}</h3>
+                    <div class="academic-meta">
+                        <span>{{ degree.dates | t(lang) }}</span>
+                        <span>{{ degree.school | t(lang) }}</span>
+                        {%- if degree.grade | t(lang) %}
+                        <span class="grade">{{ degree.grade | t(lang) }}</span>
+                        {%- endif %}
                     </div>
-                </div>
-
-                <!-- Degree 2 -->
-                <div class="v-timeline-item" data-gallery="gallery-bachelor">
-                    <div class="v-timeline-dot"></div>
-                    <div class="v-timeline-content">
-                        <h3>Bachelor in Bioengineering</h3>
-                        <div class="academic-meta">
-                            <span>Sep 2021 &ndash; Jun 2024</span>
-                            <span>Faculty of Engineering of University of Porto</span>
-                            <span class="grade">Grade B (ECTS scale)</span>
-                        </div>
-                        <p>Solidified foundational knowledge in biology, chemistry, and engineering principles. It was during my undergraduate studies that I developed a strong interest in biological processes and therefore chose to pursue a specialization in Biological Engineering.</p>
-                        <p class="highlight-units"><strong>Key Curricular Units:</strong> General Microbiology, Transport Phenomena, Biochemistry, Introduction to Systems and Bioprocess Engineering, Interfacial Phenomena in Biosystems, Enzymatic Engineering, Fermentation Engineering, Separation Processes.</p>
-                    </div>
-                </div>
-
-                <!-- High School -->
-                <div class="v-timeline-item" data-gallery="gallery-highschool">
-                    <div class="v-timeline-dot"></div>
-                    <div class="v-timeline-content">
-                        <h3>High School - Sciences and Technologies</h3>
-                        <div class="academic-meta">
-                            <span>Sep 2018 &ndash; Jun 2021</span>
-                            <span>Alves Martins High School</span>
-                            <span class="grade">Grade 19/20 (20-point scale)</span>
-                        </div>
-                        <p>Focused on learning the basics of Biology, Chemistry, and Mathematics. It was during this time that I discovered my passion for exact sciences, ultimately leading to my pursuit of the bioengineering field.</p>
+                    <p>{{ degree.text | t(lang) }}</p>
+                    {%- if degree.units %}
+                    <p class="highlight-units"><strong>{{ education.keyUnits | t(lang) }}</strong> {{ degree.units | t(lang) }}</p>
+                    {%- endif %}
+                    <!-- Phones: the photos sit right under each degree -->
+                    <div class="inline-gallery" aria-hidden="true">
+                        {{ photoStrip(degree.photos, lang) }}
                     </div>
                 </div>
             </div>
-
-            <!-- RIGHT COLUMN: The Interactive Gallery -->
-            <div class="gallery-display-area">
-                
-                <!-- Default State -->
-                <div class="gallery-default" id="gallery-default">
-                    <span class="material-symbols-outlined" style="font-size: 3rem; margin-bottom: 10px;">See gallery</span>
-                    <p>Hover over a degree to see photos</p>
-                </div>
-
-                <!-- Master Gallery -->
-                <div class="edu-gallery" id="gallery-master">
-                    <div class="scrolling-track">
-                        <!-- We duplicate the images to create an infinite scrolling loop illusion! -->
-                        <!-- Set 1 -->
-                        <div class="gallery-item">
-                            <img src="/images/master1.jpeg" alt="Master Lab">
-                            <p class="img-legend">Graduating class of 2026 on a traditional graduation parade.</p>
-                        </div>
-                        <div class="gallery-item">
-                            <img src="/images/master2.jpeg" alt="Master Class">
-                            <p class="img-legend">The day of my official graduation ceremony.</p>
-                        </div>
-                        <div class="gallery-item">
-                            <img src="/images/master3.jpeg" alt="Master Class">
-                            <p class="img-legend">Conducting interfacial studies on my ERASMUS+ Internship at Laboratory of Food Chemistry and Biochemistry.</p>
-                        </div>
-                        <div class="gallery-item">
-                            <img src="/images/master4.jpeg" alt="Master Class">
-                            <p class="img-legend">Attending the 2025 Symposium on Bioengineering.</p>
-                        </div>
-                        <div class="gallery-item">
-                            <img src="/images/master5.jpeg" alt="Master Class">
-                            <p class="img-legend">Study visit to Portugal's leading brewery, undertaken as part of the Food Technology course.</p>
-                        </div>
-                        <div class="gallery-item">
-                                <img src="/images/Master's Merit Award.jpg" alt="Award">
-                                <p class="img-legend">Master's Merit Award Acceptance.</p>
-                        </div>
-
-
-                        <!-- Set 2 (Exact duplicates of Set 1) -->
-                        <div class="gallery-item">
-                            <img src="/images/master1.jpeg" alt="Master Lab">
-                            <p class="img-legend">Graduating class of 2026 on a traditional graduation parade.</p>
-                        </div>
-                        <div class="gallery-item">
-                            <img src="/images/master2.jpeg" alt="Master Class">
-                            <p class="img-legend">The day of my official graduation ceremony.</p>
-                        </div>
-                        <div class="gallery-item">
-                            <img src="/images/master3.jpeg" alt="Master Class">
-                            <p class="img-legend">Conducting interfacial studies on my ERASMUS+ Internship at Laboratory of Food Chemistry and Biochemistry.</p>
-                        </div>
-                        <div class="gallery-item">
-                            <img src="/images/master4.jpeg" alt="Master Class">
-                            <p class="img-legend">Attending the 2025 Symposium on Bioengineering.</p>
-                        </div>
-                        <div class="gallery-item">
-                            <img src="/images/master5.jpeg" alt="Master Class">
-                            <p class="img-legend">Study visit to Portugal's leading brewery, undertaken as part of the Food Technology course.</p>
-                        </div>
-                        <div class="gallery-item">
-                                <img src="/images/Master's Merit Award.jpg" alt="Award">
-                                <p class="img-legend">Master's Merit Award Acceptance.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Bachelor Gallery -->
-                <div class="edu-gallery" id="gallery-bachelor">
-                    <div class="scrolling-track">
-                        <!-- Set 1 -->
-                        <div class="gallery-item">
-                            <img src="/images/bach1.jpeg" alt="Bachelor Lab">
-                            <p class="img-legend">Teambuilding activity of Já T'Explico, a student organization I was part of.</p>
-                        </div>
-                        <div class="gallery-item">
-                            <img src="/images/bach2.jpeg" alt="Bachelor Class">
-                            <p class="img-legend">Working in the laboratory for the Instrumental Methods of Analysis course.</p>
-                        </div>
-                        <div class="gallery-item">
-                            <img src="/images/bach3.jpeg" alt="Bachelor Class">
-                            <p class="img-legend">Attending a faculty party with fellow colleagues and friends.</p>
-                        </div>
-                        <div class="gallery-item">
-                            <img src="/images/bach4.jpeg" alt="Bachelor Class">
-                            <p class="img-legend">A practical laboratory class taken under the Protein Engineering Course.</p>
-                        </div>
-                        <div class="gallery-item">
-                            <img src="/images/bach5.jpeg" alt="Bachelor Class">
-                            <p class="img-legend">Volunteering in the cleanup of Homem do Leme Beach organized by FOCA and AEFEUP.</p>
-                        </div>
-
-                        
-                        <!-- Set 2 (Exact duplicates of Set 1) -->
-                        <div class="gallery-item">
-                            <img src="/images/bach1.jpeg" alt="Bachelor Lab">
-                            <p class="img-legend">Teambuilding activity of Já T'Explico, a student organization I was part of.</p>
-                        </div>
-                        <div class="gallery-item">
-                            <img src="/images/bach2.jpeg" alt="Bachelor Class">
-                            <p class="img-legend">Working in the laboratory for the Instrumental Methods of Analysis course.</p>
-                        </div>
-                        <div class="gallery-item">
-                            <img src="/images/bach3.jpeg" alt="Bachelor Class">
-                            <p class="img-legend">Attending a faculty party with fellow colleagues and friends.</p>
-                        </div>
-                        <div class="gallery-item">
-                            <img src="/images/bach4.jpeg" alt="Bachelor Class">
-                            <p class="img-legend">A practical laboratory class taken under the Protein Engineering Course.</p>
-                        </div>
-                        <div class="gallery-item">
-                            <img src="/images/bach5.jpeg" alt="Bachelor Class">
-                            <p class="img-legend">Volunteering in the cleanup of Homem do Leme Beach organized by FOCA and AEFEUP.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- High School Gallery -->
-                <div class="edu-gallery" id="gallery-highschool">
-                    <div class="static-gallery">
-                        <!-- Set 1 -->
-                        <div class="gallery-item">
-                            <img src="/images/hs1.png" alt="High School">
-                            <p class="img-legend">Junior year class.</p>
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
+            {%- endfor %}
         </div>
 
-                    
-            <!-- Complementary Education (Grid layout) -->
-        <h2 class="section-title">Complementary Education</h2>
-        <div class="courses-grid">
-            
-            <!-- Course 1 -->
-            <div class="course-card">
-                
-                <!-- NEW: Wraps the miniature and text together -->
-                <div class="course-header">
-                    <!-- The clickable miniature -->
-                    <a href="/images/SummerSchoolCertificate.pdf" target="_blank" class="course-cert-link">
-                        <img src="/images/SummerSchoolThumbnail.png" alt="Summer School Certificate" class="course-cert-mini">
-                    </a>
-                    
-                    <!-- The title and date -->
-                    <div class="course-header-text">
-                        <h4>Research Summer School in Microbial Communities</h4>
-                        <div class="course-meta">
-                            <span>University of Porto</span>
-                            <span>July 2024</span>
-                        </div>
-                    </div>
-                </div>
-
-                <p>Intensive three-week hands-on training on research techniques in microbial communities. This program included a one-week internship at CIIMAR, where I got to contribute to a project on the bioremediation potential of microbial communities in polluted environments.</p>
+        <!-- Computers: one shared photo panel that follows the page -->
+        <div class="gallery-display-area">
+            <div class="gallery-default" id="gallery-default">
+                <span class="material-symbols-outlined" aria-hidden="true">photo_library</span>
+                <p data-hint-tap="{{ ui.gallery.hintTap | t(lang) }}">{{ ui.gallery.hintHover | t(lang) }}</p>
             </div>
-
-            <!-- Course 2 -->
-            <div class="course-card">
-                
-                <div class="course-header">
-                    <a href="/images/ProjectManagCert.pdf" target="_blank" class="course-cert-link">
-                        <img src="/images/ProjectManagCert.png" alt="Python Data Science Certificate" class="course-cert-mini">
-                    </a>
-
-                    <div class="course-header-text">
-                        <h4>Foundations of Project Management</h4>
-                        <div class="course-meta">
-                            <span>Google / Coursera</span>
-                            <span>Jan 2024</span>
-                        </div>
-                    </div>
-                </div>
-
-                <p>Gained a solid foundation in project management principles, including project planning, scheduling, stakeholder communication, risk management, and team coordination.</p>
+            {%- for degree in education.degrees %}
+            <div class="edu-gallery" id="gallery-{{ degree.id }}">
+                {{ photoStrip(degree.photos, lang) }}
             </div>
-
-            <!-- Course 3 -->
-            <div class="course-card">
-                
-                <div class="course-header">
-                    <a href="/images/Excelcert.pdf" target="_blank" class="course-cert-link">
-                        <img src="/images/Excelcert.jpg" alt="excel" class="course-cert-mini">
-                    </a>
-
-                    <div class="course-header-text">
-                        <h4>From Basic to Advanced - Complete Microsoft Excel Course</h4>
-                        <div class="course-meta">
-                            <span>Udemy</span>
-                            <span>Aug 2023</span>
-                        </div>
-                    </div>
-                </div>
-
-                <p>Online certification focusing on developing advanced Microsoft Excel skills, including data analysis and spreadsheet automation for efficient data management.</p>
-            </div>
-
+            {%- endfor %}
         </div>
-            
-        
-    </main>
+    </div>
 
-    <!-- Hover Logic Script -->
-    <script>
-        const timelineItems = document.querySelectorAll('.v-timeline-item');
-        const defaultGallery = document.getElementById('gallery-default');
-        const allGalleries = document.querySelectorAll('.edu-gallery');
+    <!-- Awards -->
+    <h2 class="section-title" id="awards">{{ education.awardsTitle | t(lang) }}</h2>
+    <div class="awards-grid">
+        {%- for award in education.awards %}
+        <article class="award-card reveal">
+            <div class="award-photo">
+                <img src="{{ award.photo }}" alt="{{ award.photoAlt | t(lang) }}" loading="lazy">
+                <span class="award-year">{{ award.year }}</span>
+            </div>
+            <div class="award-body">
+                <span class="material-symbols-outlined award-icon" aria-hidden="true">emoji_events</span>
+                <h3>{{ award.title | t(lang) }}</h3>
+                <p class="award-issuer">{{ award.issuer | t(lang) }}</p>
+                <p>{{ award.text | t(lang) }}</p>
+            </div>
+        </article>
+        {%- endfor %}
+    </div>
 
-        timelineItems.forEach(item => {
-            item.addEventListener('mouseenter', function() {
-                // 1. Find out which gallery we need
-                const targetId = this.getAttribute('data-gallery');
-                
-                // 2. Hide default message and all other galleries
-                defaultGallery.style.opacity = '0';
-                allGalleries.forEach(g => g.classList.remove('active'));
-                
-                // 3. Show the correct one
-                const targetGallery = document.getElementById(targetId);
-                if(targetGallery) {
-                    targetGallery.classList.add('active');
-                }
-            });
-        });
+    <!-- Complementary education -->
+    <h2 class="section-title">{{ education.coursesTitle | t(lang) }}</h2>
+    <div class="courses-grid">
+        {%- for course in education.courses %}
+        <article class="course-card reveal">
+            <div class="course-header">
+                {%- if course.certificate %}
+                <a href="{{ course.certificate }}" target="_blank" rel="noopener" class="course-cert-link" aria-label="{{ education.viewCertificate | t(lang) }}: {{ course.title | t(lang) }}">
+                    <img src="{{ course.thumb }}" alt="" class="course-cert-mini" loading="lazy">
+                </a>
+                {%- else %}
+                <span class="course-cert-placeholder" aria-hidden="true"><span class="material-symbols-outlined">school</span></span>
+                {%- endif %}
+                <div class="course-header-text">
+                    <h3>{{ course.title | t(lang) }}</h3>
+                    <div class="course-meta">
+                        <span>{{ course.issuer | t(lang) }}</span>
+                        <span>{{ course.date | t(lang) }}</span>
+                    </div>
+                </div>
+            </div>
+            {%- if course.text %}
+            <p>{{ course.text | t(lang) }}</p>
+            {%- endif %}
+            {%- if course.certificate %}
+            <a href="{{ course.certificate }}" target="_blank" rel="noopener" class="cert-link">
+                {{ education.viewCertificate | t(lang) }}
+                <span class="material-symbols-outlined" aria-hidden="true">open_in_new</span>
+            </a>
+            {%- endif %}
+        </article>
+        {%- endfor %}
+    </div>
 
-        // Revert to default when mouse leaves the entire timeline area
-        document.querySelector('.edu-split-layout').addEventListener('mouseleave', function() {
-            allGalleries.forEach(g => g.classList.remove('active'));
-            defaultGallery.style.opacity = '0.5';
-        });
-    </script>
-
-    <!-- GLOBAL SECURITY SCRIPT -->
-    <script>
-        // 1. Disable Right-Click Menu entirely
-        document.addEventListener('contextmenu', event => event.preventDefault());
-
-        // 2. Disable Copy (Ctrl+C), Save (Ctrl+S), Inspect Element (F12), and View Source (Ctrl+U)
-        document.addEventListener('keydown', function(e) {
-            // F12 key
-            if (e.key === 'F12') {
-                e.preventDefault();
-            }
-            // Ctrl/Cmd shortcuts
-            if (e.ctrlKey || e.metaKey) {
-                if (e.key === 'c' || e.key === 'C' || // Copy
-                    e.key === 's' || e.key === 'S' || // Save
-                    e.key === 'u' || e.key === 'U') { // View Source
-                    e.preventDefault();
-                }
-                // Ctrl+Shift+I (Inspect Element)
-                if (e.shiftKey && (e.key === 'i' || e.key === 'I')) {
-                    e.preventDefault();
-                }
-            }
-        });
-    </script>
-</body>
-</html>
+    <!-- Volunteering -->
+    <h2 class="section-title">{{ education.volunteeringTitle | t(lang) }}</h2>
+    <div class="volunteer-grid">
+        {%- for item in education.volunteering %}
+        <article class="volunteer-card reveal">
+            <img src="{{ item.photo }}" alt="{{ item.photoAlt | t(lang) }}" loading="lazy">
+            <div class="volunteer-body">
+                <span class="material-symbols-outlined volunteer-icon" aria-hidden="true">volunteer_activism</span>
+                <h3>{{ item.role | t(lang) }}</h3>
+                <p class="volunteer-meta">
+                    {{ item.org | t(lang) }}
+                    {%- if item.dates | t(lang) %} &middot; {{ item.dates | t(lang) }}{% endif %}
+                </p>
+                <p>{{ item.text | t(lang) }}</p>
+            </div>
+        </article>
+        {%- endfor %}
+    </div>
+</div>

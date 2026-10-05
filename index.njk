@@ -1,155 +1,122 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mariana Figueiredo | Portfolio</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/style.css">
-</head>
-<body>
-    <!-- Top Navigation -->
-    <nav class="navbar">
-        <div class="logo">Mariana.</div>
-        
-        <div class="nav-right">
-            <a href="/documents/Mariana_Figueiredo_CV.pdf" download="Mariana_Figueiredo_CV.pdf" class="btn-download">Download CV &darr;</a>
-            
-            <div class="menu-container">
-                <button class="menu-toggle" id="menuToggle">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="3" y1="12" x2="21" y2="12"></line>
-                        <line x1="3" y1="6" x2="21" y2="6"></line>
-                        <line x1="3" y1="18" x2="21" y2="18"></line>
-                    </svg>
-                    <span>Menu</span>
-                </button>
-                
-                <div class="dropdown" id="dropdownMenu">
-                    <a href="/about">About me</a>
-                    <a href="/expertise">Areas of Expertise</a>
-                    <a href="/projects">Experience & Projects</a>
-                    <a href="/education">Education</a>
-                    <a href="#contacts">Contacts</a>
-                </div>
-            </div>
+---
+pagination:
+  data: langs
+  size: 1
+  alias: lang
+permalink: "{{ '/pt' if lang == 'pt' }}/"
+layout: layouts/base.njk
+pageKey: home
+---
+{%- set latestJob = experience.jobs[0] -%}
+{%- set master = education.degrees[0] -%}
+
+<!-- Hero -->
+<section class="hero">
+    <div class="hero-text">
+        {%- if site.openToWork %}
+        <p class="badge-open"><span class="pulse" aria-hidden="true"></span>{{ ui.openToWork | t(lang) }}</p>
+        {%- endif %}
+        <p class="eyebrow">
+            {{ ui.role | t(lang) }}
+            <span class="eyebrow-sep" aria-hidden="true">&middot;</span>
+            <span class="material-symbols-outlined" aria-hidden="true">location_on</span>{{ ui.location | t(lang) }}
+        </p>
+        <h1>{{ home.greeting | t(lang) | safe }}</h1>
+        <p class="hero-lead">{{ home.lead | t(lang) }}</p>
+        <div class="hero-actions">
+            <a href="#contacts" class="btn btn-primary">{{ home.ctaPrimary | t(lang) }}</a>
+            <a href="{{ '/projects/' | localeUrl(lang) }}" class="btn btn-ghost">{{ home.ctaSecondary | t(lang) }} &rarr;</a>
         </div>
-    </nav>
+    </div>
 
-    <!-- Main Hero Section -->
-    <main class="hero">
-        <div class="hero-text">
-            <h1>Hi,<br>I'm Mariana Figueiredo.</h1>
-            <p>Focused on the practical application of bioengineering to solve real-world biotechnology challenges.</p>
+    <div class="hero-image">
+        <div class="image-wrapper">
+            <img src="/images/profile-hero.webp" width="800" height="1000" alt="{{ home.photoAlt | t(lang) }}" fetchpriority="high">
+            <!-- Pinned to the tip of the arrow drawn in the photo -->
+            <a href="{{ '/about/' | localeUrl(lang) }}" class="btn-about">{{ home.aboutButton | t(lang) }}</a>
+        </div>
+    </div>
+</section>
+
+<!-- Highlights strip -->
+<section class="highlights reveal" aria-label="{{ home.highlightsLabel | t(lang) }}">
+    {%- for h in home.highlights %}
+    {%- if h.link %}<a class="highlight" href="{{ h.link | localeUrl(lang) }}">{% else %}<div class="highlight">{% endif %}
+        {%- if h.icon %}
+        <span class="material-symbols-outlined highlight-icon" aria-hidden="true">{{ h.icon }}</span>
+        {%- else %}
+        <span class="highlight-value" data-count="{{ h.count }}" data-suffix="{{ h.suffix }}">{{ h.count }}{{ h.suffix }}</span>
+        {%- endif %}
+        <span class="highlight-label">{{ h.label | t(lang) }}</span>
+    {% if h.link %}</a>{% else %}</div>{% endif %}
+    {%- endfor %}
+</section>
+
+<!-- Featured research: interactive process pipeline -->
+<section class="featured reveal" aria-labelledby="featured-title">
+    <div class="featured-head">
+        <p class="section-label">{{ home.featured.label | t(lang) }}</p>
+        <h2 id="featured-title">{{ home.featured.title | t(lang) }}</h2>
+        <p class="featured-meta">{{ home.featured.meta | t(lang) }}</p>
+        <p class="featured-intro">{{ home.featured.intro | t(lang) }}</p>
+    </div>
+
+    <div class="pipeline" data-pipeline>
+        <div class="pipeline-steps" role="tablist" aria-label="{{ home.featured.title | t(lang) }}">
+            {%- for step in home.featured.steps %}
+            <button type="button" class="pipeline-step" role="tab" id="step-tab-{{ loop.index }}"
+                    aria-controls="step-panel-{{ loop.index }}" aria-selected="{{ 'true' if loop.first else 'false' }}"
+                    tabindex="{{ '0' if loop.first else '-1' }}">
+                <span class="pipeline-num">{{ loop.index }}</span>
+                <span class="material-symbols-outlined pipeline-icon" aria-hidden="true">{{ step.icon }}</span>
+                <span class="pipeline-title">{{ step.title | t(lang) }}</span>
+            </button>
+            {%- endfor %}
+        </div>
+        {%- for step in home.featured.steps %}
+        <div class="pipeline-panel" role="tabpanel" id="step-panel-{{ loop.index }}" aria-labelledby="step-tab-{{ loop.index }}"{% if not loop.first %} hidden{% endif %}>
+            <p>{{ step.text | t(lang) }}</p>
+        </div>
+        {%- endfor %}
+        <div class="pipeline-progress" aria-hidden="true"><span></span></div>
+    </div>
+
+    <a href="{{ '/projects/' | localeUrl(lang) }}" class="card-link">{{ home.featured.link | t(lang) }} &rarr;</a>
+</section>
+
+<!-- Summary cards -->
+<section class="info-section reveal">
+    <div class="cards-container">
+        <div class="card">
+            <h3>{{ home.cards.expertise.title | t(lang) }}</h3>
+            <ul class="card-list">
+                {%- for area in expertise.areas %}
+                <li><span class="material-symbols-outlined" aria-hidden="true">{{ area.icon }}</span>{{ area.name | t(lang) }}</li>
+                {%- endfor %}
+            </ul>
+            <a href="{{ '/expertise/' | localeUrl(lang) }}" class="card-link">{{ home.cards.expertise.link | t(lang) }} &rarr;</a>
         </div>
 
-        <div class="hero-image">
-            <div class="image-wrapper">
-                <img src="/images/profile.png" alt="Mariana Figueiredo">
-                <a href="/about" class="btn-about">About me</a>
+        <div class="card">
+            <h3>{{ home.cards.experience.title | t(lang) }}</h3>
+            <div class="edu-preview">
+                <span class="preview-label">{{ home.cards.experience.latest | t(lang) }}</span>
+                <span class="degree">{{ latestJob.role | t(lang) }}</span>
+                <span class="date">{{ latestJob.short }} &middot; {{ latestJob.place | t(lang) }}</span>
+                <span class="grade">{{ latestJob.dates | t(lang) }}</span>
             </div>
+            <a href="{{ '/projects/' | localeUrl(lang) }}" class="card-link">{{ home.cards.experience.link | t(lang) }} &rarr;</a>
         </div>
-    </main>
 
-    <!-- 3 Rectangular Cards Section -->
-    <section class="info-section">
-        <div class="cards-container">
-            
-            <!-- Card 1 -->
-            <div class="card">
-                <h3>Areas of Expertise</h3>
-                <ul>
-                    <li>Bioprocess Engineering</li>
-                    <li>Laboratory Research</li>
-                    <li>Food Technology</li>
-                </ul>
-                <a href="/expertise" class="card-link">See more areas of expertise &rarr;</a>
+        <div class="card">
+            <h3>{{ home.cards.education.title | t(lang) }}</h3>
+            <div class="edu-preview">
+                <span class="degree">{{ master.title | t(lang) }}</span>
+                <span class="date">{{ master.school | t(lang) }}</span>
+                <span class="grade">{{ master.dates | t(lang) }}</span>
+                <span class="preview-award"><span class="material-symbols-outlined" aria-hidden="true">workspace_premium</span>{{ education.awards[0].title | t(lang) }}</span>
             </div>
-            
-            <!-- Card 2 -->
-            <div class="card">
-                <h3>Experience and Projects</h3>
-                
-                <!-- Reusing the stacked text formatting for a clean look! -->
-                <div class="edu-preview">
-                    <span class="degree">MSc Graduate Researcher</span>
-                    <span class="date">LEPABE</span>
-                    <span class="grade">Feb 2026 &ndash; Present</span>
-                </div>
-                
-                <a href="/projects" class="card-link">See more experience &rarr;</a>
-            </div>
-            
-            <!-- Card 3 -->
-            <div class="card">
-                <h3>Education</h3>
-                
-                <!-- Stacked text formatting (Fixed the typo here!) -->
-                <div class="edu-preview">
-                    <span class="degree">MSc in Bioengineering</span>
-                    <span class="date">2024 &ndash; Present</span>
-                    <span class="grade">Grade --- </span>
-                </div>
-                
-                <a href="/education" class="card-link">See more education &rarr;</a>
-            </div>
-
+            <a href="{{ '/education/' | localeUrl(lang) }}" class="card-link">{{ home.cards.education.link | t(lang) }} &rarr;</a>
         </div>
-    </section>
-
-    <!-- Footer Contacts (Added id="contacts" so the menu link jumps here) -->
-    <footer class="contacts" id="contacts">
-        <a href="https://www.linkedin.com/in/marianadiasfigueiredo" target="_blank">LinkedIn</a>
-        <a href="mailto:marianadfigueiredop@gmail.com">Email</a>
-        <a href="tel:+351914665196">Phone</a>
-    </footer>
-
-    <!-- Script to make the Menu open and close -->
-    <script>
-        const menuToggle = document.getElementById('menuToggle');
-        const dropdownMenu = document.getElementById('dropdownMenu');
-
-        // Open/Close menu when clicking the button
-        menuToggle.addEventListener('click', (e) => {
-            e.stopPropagation(); 
-            dropdownMenu.classList.toggle('show');
-        });
-
-        // Close menu if clicking anywhere else on the screen
-        document.addEventListener('click', (event) => {
-            if (!dropdownMenu.contains(event.target)) {
-                dropdownMenu.classList.remove('show');
-            }
-        });
-    </script>
-
-<!-- GLOBAL SECURITY SCRIPT -->
-    <script>
-        // 1. Disable Right-Click Menu entirely
-        document.addEventListener('contextmenu', event => event.preventDefault());
-
-        // 2. Disable Copy (Ctrl+C), Save (Ctrl+S), Inspect Element (F12), and View Source (Ctrl+U)
-        document.addEventListener('keydown', function(e) {
-            // F12 key
-            if (e.key === 'F12') {
-                e.preventDefault();
-            }
-            // Ctrl/Cmd shortcuts
-            if (e.ctrlKey || e.metaKey) {
-                if (e.key === 'c' || e.key === 'C' || // Copy
-                    e.key === 's' || e.key === 'S' || // Save
-                    e.key === 'u' || e.key === 'U') { // View Source
-                    e.preventDefault();
-                }
-                // Ctrl+Shift+I (Inspect Element)
-                if (e.shiftKey && (e.key === 'i' || e.key === 'I')) {
-                    e.preventDefault();
-                }
-            }
-        });
-    </script>
-
-</body>
-</html>
+    </div>
+</section>
