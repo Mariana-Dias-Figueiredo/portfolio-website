@@ -5,7 +5,7 @@ module.exports = {
   // The website's public address once it is online, without a "/" at the end
   // (e.g. "https://marianafigueiredo.pt"). LinkedIn and other sites need it to
   // show the link preview image, so fill it in as soon as the site is published.
-  url: "",
+  url: "https://mariana-figueiredo.netlify.app",
 
   email: "mdfigueiredop@gmail.com",
   phone: "+351914665196",
