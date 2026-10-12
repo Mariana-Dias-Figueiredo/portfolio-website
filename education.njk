@@ -104,7 +104,7 @@ pageKey: education
         <article class="course-card reveal">
             <div class="course-header">
                 {%- if course.certificate %}
-                <a href="{{ course.certificate }}" target="_blank" rel="noopener" class="course-cert-link" aria-label="{{ education.viewCertificate | t(lang) }}: {{ course.title | t(lang) }}">
+                <a href="{{ course.certificate }}" target="_blank" rel="noopener" class="course-cert-link" aria-label="{{ (course.certificateLabel or education.viewCertificate) | t(lang) }}: {{ course.title | t(lang) }}">
                     <img src="{{ course.thumb }}" alt="" class="course-cert-mini" loading="lazy">
                 </a>
                 {%- else %}
@@ -123,7 +123,7 @@ pageKey: education
             {%- endif %}
             {%- if course.certificate %}
             <a href="{{ course.certificate }}" target="_blank" rel="noopener" class="cert-link">
-                {{ education.viewCertificate | t(lang) }}
+                {{ (course.certificateLabel or education.viewCertificate) | t(lang) }}
                 <span class="material-symbols-outlined" aria-hidden="true">open_in_new</span>
             </a>
             {%- endif %}

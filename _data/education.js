@@ -102,6 +102,19 @@ module.exports = {
   viewCertificate: { en: "View certificate", pt: "Ver certificado" },
   courses: [
     {
+      title: { en: "ThinkBio - Bioengineering Case Study Competition", pt: "ThinkBio - Competição de Case Study em Bioengenharia" },
+      issuer: { en: "NEB - Bioengineering Students' Association, University of Porto", pt: "NEB - Núcleo de Estudantes de Bioengenharia, Universidade do Porto" },
+      date: { en: "Feb 2025", pt: "fev. 2025" },
+      text: {
+        en: "University competition in which teams solve real case studies from the biotechnology and health sectors, guided by experienced mentors and hands-on workshops. Accredited continuing training (40.5 hours, 1.5 ECTS), completed with a final grade of 16/20.",
+        pt: "Competição universitária em que equipas resolvem casos reais dos setores da biotecnologia e da saúde, com o apoio de mentores experientes e workshops dinâmicos. Formação contínua acreditada (40,5 horas, 1,5 ECTS), concluída com classificação final de 16 valores."
+      },
+      thumb: "/images/cert-thinkbio.webp",
+      // No certificate is issued, so this links to the academic record from SIGARRA
+      certificate: "/documents/thinkbio-academic-record.png",
+      certificateLabel: { en: "View academic record", pt: "Ver registo académico" }
+    },
+    {
       title: { en: "Research Summer School in Microbial Communities", pt: "Escola de Verão de Investigação em Comunidades Microbianas" },
       issuer: { en: "University of Porto", pt: "Universidade do Porto" },
       date: { en: "Jul 2024", pt: "jul. 2024" },

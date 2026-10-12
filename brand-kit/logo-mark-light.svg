@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>Mariana Figueiredo</title>
+  <rect width="64" height="64" rx="14" fill="#f4eee6"/>
+  <!-- Light version of favicon.svg, for dark backgrounds -->
+  <path fill="#4a3022" d="M11 47V17h6l7 12 7-12h21v6H37v6.5h11V35H37v12h-6V29l-7 12-7-12v18z"/>
+  <circle cx="48.5" cy="44" r="3.2" fill="#2a6350"/>
+</svg>
