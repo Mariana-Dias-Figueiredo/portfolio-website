@@ -23,7 +23,7 @@ module.exports = {
     },
     {
       count: 3, suffix: "×",
-      label: { en: "higher bioactivity of an agar industry by-productafter RSM optimization (MSc research)", pt: "maior bioatividade de um subproduto da indústria do ágar após otimização por RSM (dissertação de Mestrado)" }
+      label: { en: "higher bioactivity of an agar industry by-product after RSM optimization (MSc research)", pt: "maior bioatividade de um subproduto da indústria do ágar após otimização por RSM (dissertação de Mestrado)" }
     },
     {
       icon: "workspace_premium",

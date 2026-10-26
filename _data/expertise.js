@@ -139,17 +139,10 @@ module.exports = {
           }
         },
         {
-          name: { en: "Python for Data Visualization", pt: "Python para Visualização de Dados" },
+          name: { en: "Python", pt: "Python" },
           detail: {
-            en: "Plotting and exploring experimental results.",
-            pt: "Representação gráfica e exploração de resultados experimentais."
-          }
-        },
-        {
-          name: { en: "MATLAB", pt: "MATLAB" },
-          detail: {
-            en: "Numerical modeling and engineering calculations.",
-            pt: "Modelação numérica e cálculos de engenharia."
+            en: "Plotting, data visualization and non-linear regressions.",
+            pt: "Representação gráfica, visualização de dados e regressões não lineares."
           }
         }
       ]
@@ -193,7 +186,7 @@ module.exports = {
 
   toolsTitle: { en: "Tools & Languages", pt: "Ferramentas e Línguas" },
   toolsLabel: { en: "Technical proficiencies", pt: "Competências técnicas" },
-  tools: ["JMP", "MATLAB", "Microsoft Excel", "Python", "LaTeX"],
+  tools: ["JMP", "Microsoft Excel", "Python", "LaTeX"],
   languagesLabel: { en: "Languages", pt: "Línguas" },
   languages: [
     { name: { en: "Portuguese", pt: "Português" }, level: { en: "Native", pt: "Língua materna" } },
