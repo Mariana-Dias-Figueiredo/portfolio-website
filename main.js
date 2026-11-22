@@ -93,6 +93,29 @@ document.querySelectorAll('[data-copy]').forEach((button) => {
     });
 });
 
+/* ---------- Phone number window (footer) ---------- */
+document.querySelectorAll('.phone-toggle').forEach((toggle) => {
+    const popover = document.getElementById(toggle.getAttribute('aria-controls'));
+    const setOpen = (open) => {
+        popover.hidden = !open;
+        toggle.setAttribute('aria-expanded', String(open));
+    };
+    toggle.addEventListener('click', (event) => {
+        event.stopPropagation();
+        setOpen(popover.hidden);
+    });
+    // Close when clicking elsewhere or pressing Escape
+    document.addEventListener('click', (event) => {
+        if (!popover.hidden && !popover.contains(event.target)) setOpen(false);
+    });
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && !popover.hidden) {
+            setOpen(false);
+            toggle.focus();
+        }
+    });
+});
+
 /* ---------- Fade-in on scroll + number count-up ---------- */
 function countUp(element) {
     const target = Number(element.dataset.count);

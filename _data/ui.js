@@ -16,7 +16,15 @@ module.exports = {
     mainNav: { en: "Main navigation", pt: "Navegação principal" }
   },
 
-  cvButton: { en: "Download CV", pt: "Descarregar CV" },
+  // "Request my CV" opens an email to you with this subject and text already filled in
+  cvButton: { en: "Request my CV", pt: "Pedir o meu CV" },
+  cvRequest: {
+    subject: { en: "CV request – Mariana Figueiredo", pt: "Pedido de CV – Mariana Figueiredo" },
+    body: {
+      en: "Hi Mariana,\n\nI came across your portfolio and would like to receive your CV.\n\nCompany / role: \n\nBest regards,\n",
+      pt: "Olá Mariana,\n\nVi o seu portfólio e gostaria de receber o seu CV.\n\nEmpresa / função: \n\nCom os melhores cumprimentos,\n"
+    }
+  },
   openToWork: { en: "Open to opportunities in biotech", pt: "Disponível para oportunidades em biotecnologia" },
 
   // Browser tab titles
@@ -46,8 +54,9 @@ module.exports = {
     },
     copyEmail: { en: "Copy email", pt: "Copiar e-mail" },
     copied: { en: "Copied!", pt: "Copiado!" },
-    email: { en: "Email", pt: "E-mail" },
     phone: { en: "Phone", pt: "Telefone" },
+    call: { en: "Call", pt: "Ligar" },
+    copy: { en: "Copy", pt: "Copiar" },
     backToTop: { en: "Back to top", pt: "Voltar ao topo" }
   },
 

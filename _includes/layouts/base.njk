@@ -3,6 +3,8 @@
 {%- set homeUrl = "/" | localeUrl(lang) -%}
 {%- set pageTitle = ui.titles[pageKey] | t(lang) -%}
 {%- set pageDescription = ui.description | t(lang) -%}
+{#- "Request my CV": an email to Mariana with the subject and text filled in -#}
+{%- set cvMailto = "mailto:" + site.email + "?subject=" + (ui.cvRequest.subject | t(lang) | urlencode) + "&body=" + (ui.cvRequest.body | t(lang) | urlencode) -%}
 <!DOCTYPE html>
 <html lang="{{ 'pt-PT' if lang == 'pt' else 'en' }}">
 <head>
@@ -64,7 +66,7 @@
                 <a href="{{ ('/' + key + '/') | localeUrl(lang) }}"{% if pageKey == key %} aria-current="page"{% endif %}>{{ ui.nav[key] | t(lang) }}</a>
                 {%- endfor %}
                 <a href="#contacts">{{ ui.nav.contact | t(lang) }}</a>
-                <a href="{{ site.cv }}" download="Mariana_Figueiredo_CV.pdf" class="btn-download nav-cv-mobile">{{ ui.cvButton | t(lang) }} &darr;</a>
+                <a href="{{ cvMailto }}" class="btn-download nav-cv-mobile"><span class="material-symbols-outlined" aria-hidden="true">mail</span>{{ ui.cvButton | t(lang) }}</a>
             </div>
 
             <div class="nav-right">
@@ -72,7 +74,7 @@
                     <a href="{{ page.url | localeUrl('en') }}" hreflang="en" lang="en"{% if lang == "en" %} aria-current="true"{% endif %}>EN</a>
                     <a href="{{ page.url | localeUrl('pt') }}" hreflang="pt-PT" lang="pt-PT"{% if lang == "pt" %} aria-current="true"{% endif %}>PT</a>
                 </div>
-                <a href="{{ site.cv }}" download="Mariana_Figueiredo_CV.pdf" class="btn-download nav-cv-desktop">{{ ui.cvButton | t(lang) }} &darr;</a>
+                <a href="{{ cvMailto }}" class="btn-download nav-cv-desktop"><span class="material-symbols-outlined" aria-hidden="true">mail</span>{{ ui.cvButton | t(lang) }}</a>
                 <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navLinks"
                         data-label-open="{{ ui.nav.menu | t(lang) }}" data-label-close="{{ ui.nav.close | t(lang) }}">
                     <span class="material-symbols-outlined" aria-hidden="true">menu</span>
@@ -108,17 +110,25 @@
                             LinkedIn
                         </a>
                     </li>
-                    <li>
-                        <a href="mailto:{{ site.email }}">
-                            <span class="material-symbols-outlined" aria-hidden="true">mail</span>
-                            {{ ui.footer.email | t(lang) }}
-                        </a>
-                    </li>
-                    <li>
-                        <a href="tel:{{ site.phone }}">
+                    <li class="phone-reveal">
+                        <!-- The number only shows in a small window when "Phone" is clicked -->
+                        <button type="button" class="phone-toggle" aria-expanded="false" aria-controls="phonePopover">
                             <span class="material-symbols-outlined" aria-hidden="true">call</span>
-                            {{ site.phoneDisplay }}
-                        </a>
+                            {{ ui.footer.phone | t(lang) }}
+                        </button>
+                        <div class="phone-popover" id="phonePopover" hidden>
+                            <span class="phone-number">{{ site.phoneDisplay }}</span>
+                            <div class="phone-actions">
+                                <a class="phone-action" href="tel:{{ site.phone }}">
+                                    <span class="material-symbols-outlined" aria-hidden="true">call</span>
+                                    {{ ui.footer.call | t(lang) }}
+                                </a>
+                                <button type="button" class="phone-action" data-copy="{{ site.phoneDisplay }}" data-copied-label="{{ ui.footer.copied | t(lang) }}">
+                                    <span class="material-symbols-outlined" aria-hidden="true">content_copy</span>
+                                    <span class="btn-copy-hint">{{ ui.footer.copy | t(lang) }}</span>
+                                </button>
+                            </div>
+                        </div>
                     </li>
                 </ul>
             </div>

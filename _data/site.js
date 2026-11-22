@@ -11,7 +11,6 @@ module.exports = {
   phone: "+351914665196",
   phoneDisplay: "+351 914 665 196",
   linkedin: "https://www.linkedin.com/in/marianadiasfigueiredo",
-  cv: "/documents/Mariana_Figueiredo_CV.pdf",
 
   year: new Date().getFullYear(),
 

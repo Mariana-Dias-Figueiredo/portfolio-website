@@ -167,6 +167,9 @@ main {
 }
 
 .btn-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
     background-color: var(--text-color);
     color: white;
     padding: 10px 22px;
@@ -387,9 +390,9 @@ main {
     }
 
     .nav-links .nav-cv-mobile {
-        display: block;
+        display: flex;
+        justify-content: center;
         margin-top: 6px;
-        text-align: center;
     }
 
     .menu-toggle-label {
@@ -2497,6 +2500,113 @@ dialog.modal[open] .modal-content-box {
     color: var(--accent-light);
     text-decoration: underline;
     text-underline-offset: 4px;
+}
+
+/* "Phone" button and the small window with the number */
+.phone-reveal {
+    position: relative;
+}
+
+.phone-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0;
+    background: none;
+    border: none;
+    color: var(--cream);
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.phone-toggle:hover,
+.phone-toggle[aria-expanded="true"] {
+    color: var(--accent-light);
+}
+
+.phone-popover {
+    position: absolute;
+    left: -12px;
+    bottom: calc(100% + 14px);
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-width: 230px;
+    padding: 16px;
+    background: var(--cream);
+    color: var(--text-color);
+    border-radius: 12px;
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.3);
+    animation: fadeUp 0.2s ease;
+}
+
+.phone-popover[hidden] {
+    display: none;
+}
+
+/* Little arrow pointing down at the "Phone" button */
+.phone-popover::after {
+    content: "";
+    position: absolute;
+    left: 28px;
+    top: 100%;
+    border: 8px solid transparent;
+    border-top-color: var(--cream);
+}
+
+.phone-number {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    white-space: nowrap;
+}
+
+.phone-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.phone-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 14px;
+    background: var(--text-color);
+    color: white;
+    border: none;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.footer-links .phone-action,
+.footer-links .phone-action:hover {
+    color: white;
+    text-decoration: none;
+}
+
+.phone-action:hover {
+    background: var(--accent);
+}
+
+.phone-action .material-symbols-outlined {
+    font-size: 1.05rem;
+}
+
+/* The "Copy" label reuses the email button's script, but not its pill look */
+.phone-action .btn-copy-hint {
+    padding: 0;
+    background: none;
+    color: inherit;
+    font-size: inherit;
+}
+
+.site-footer .phone-popover :focus-visible {
+    outline-color: var(--accent);
 }
 
 .icon-linkedin {
