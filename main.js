@@ -93,6 +93,57 @@ document.querySelectorAll('[data-copy]').forEach((button) => {
     });
 });
 
+/* ---------- "Request my CV" form ---------- */
+const cvDialog = document.getElementById('cvDialog');
+if (cvDialog) {
+    const form = cvDialog.querySelector('.cv-form');
+    const formView = cvDialog.querySelector('.cv-form-view');
+    const success = cvDialog.querySelector('.cv-success');
+    const errorBox = form.querySelector('.form-error');
+    const submit = form.querySelector('.btn-submit');
+    const submitLabel = submit.querySelector('.btn-submit-label');
+    const originalLabel = submitLabel.textContent;
+
+    // The buttons are email links underneath, so they still work if JavaScript is off
+    document.querySelectorAll('[data-open-cv]').forEach((opener) => {
+        opener.addEventListener('click', (event) => {
+            event.preventDefault();
+            formView.hidden = false;
+            success.hidden = true;
+            errorBox.hidden = true;
+            cvDialog.showModal();
+            form.querySelector('input[name="company"]').focus();
+        });
+    });
+
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        errorBox.hidden = true;
+        // The email you receive gets a subject like "CV request – Novo Nordisk"
+        form.elements.subject.value = 'CV request – ' + form.elements.company.value.trim();
+        submit.disabled = true;
+        submitLabel.textContent = form.dataset.sendingLabel;
+        try {
+            const response = await fetch('/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams(new FormData(form)).toString()
+            });
+            if (!response.ok) throw new Error('Status ' + response.status);
+            const text = success.querySelector('p');
+            text.textContent = text.dataset.template.replace('{email}', form.elements.email.value.trim());
+            form.reset();
+            formView.hidden = true;
+            success.hidden = false;
+        } catch {
+            errorBox.hidden = false;
+        } finally {
+            submit.disabled = false;
+            submitLabel.textContent = originalLabel;
+        }
+    });
+}
+
 /* ---------- Phone number window (footer) ---------- */
 document.querySelectorAll('.phone-toggle').forEach((toggle) => {
     const popover = document.getElementById(toggle.getAttribute('aria-controls'));

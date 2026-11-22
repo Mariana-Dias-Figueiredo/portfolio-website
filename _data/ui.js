@@ -16,8 +16,44 @@ module.exports = {
     mainNav: { en: "Main navigation", pt: "Navegação principal" }
   },
 
-  // "Request my CV" opens an email to you with this subject and text already filled in
+  // "Request my CV" opens a small form (sent through Netlify Forms).
   cvButton: { en: "Request my CV", pt: "Pedir o meu CV" },
+  cvForm: {
+    title: { en: "Request my CV", pt: "Pedir o meu CV" },
+    intro: {
+      en: "Tell me a little about the opportunity and I'll send you an up-to-date CV tailored to it.",
+      pt: "Conte-me um pouco sobre a oportunidade e envio-lhe um CV atualizado e adaptado à mesma."
+    },
+    name: { en: "Your name", pt: "O seu nome" },
+    company: { en: "Company", pt: "Empresa" },
+    position: { en: "Position", pt: "Função / vaga" },
+    positionHint: { en: "e.g. Associate Scientist", pt: "ex.: Associate Scientist" },
+    contactType: { en: "You are", pt: "É" },
+    contactTypes: [
+      { en: "Recruiter", pt: "Recrutador(a)" },
+      { en: "Hiring manager", pt: "Responsável pela contratação" },
+      { en: "Other", pt: "Outro" }
+    ],
+    email: { en: "Email to send the CV to", pt: "E-mail para onde enviar o CV" },
+    message: { en: "Message", pt: "Mensagem" },
+    optional: { en: "optional", pt: "opcional" },
+    privacy: {
+      en: "Your details are only used to send you my CV.",
+      pt: "Os seus dados são usados apenas para lhe enviar o meu CV."
+    },
+    submit: { en: "Send request", pt: "Enviar pedido" },
+    sending: { en: "Sending…", pt: "A enviar…" },
+    successTitle: { en: "Thank you!", pt: "Obrigada!" },
+    successText: {
+      en: "I'll send my CV to {email} as soon as possible.",
+      pt: "Vou enviar o meu CV para {email} o mais brevemente possível."
+    },
+    error: {
+      en: "Something went wrong. Please try again, or email me directly at",
+      pt: "Ocorreu um erro. Tente novamente ou envie-me um e-mail diretamente para"
+    }
+  },
+  // Used if JavaScript is off: the button falls back to a plain email with this subject and text
   cvRequest: {
     subject: { en: "CV request – Mariana Figueiredo", pt: "Pedido de CV – Mariana Figueiredo" },
     body: {

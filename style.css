@@ -1287,6 +1287,147 @@ dialog.modal[open] .modal-content-box {
     box-shadow: 0 15px 40px rgba(74, 48, 34, 0.3);
 }
 
+/* --- "Request my CV" form window --- */
+dialog.cv-dialog {
+    max-width: 580px;
+    overflow-y: auto;
+}
+
+.cv-dialog [hidden] {
+    display: none !important;
+}
+
+.cv-dialog h2 {
+    margin: 0 40px 8px 0;
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    font-weight: 400;
+}
+
+.cv-intro {
+    margin: 0 0 22px;
+    color: var(--text-muted);
+}
+
+.cv-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.field-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.field-label .req {
+    color: var(--accent);
+}
+
+.field-label .opt {
+    font-weight: 400;
+    color: var(--text-muted);
+}
+
+.field input,
+.field select,
+.field textarea {
+    width: 100%;
+    padding: 11px 14px;
+    font: inherit;
+    font-size: 0.95rem;
+    color: var(--text-color);
+    background: white;
+    border: 1px solid rgba(74, 48, 34, 0.25);
+    border-radius: 10px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.field textarea {
+    resize: vertical;
+    min-height: 84px;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.form-note {
+    margin: 0;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+}
+
+.form-error {
+    margin: 0;
+    padding: 10px 14px;
+    background: #fbeaea;
+    color: #8a2a2a;
+    border-radius: 8px;
+    font-size: 0.88rem;
+}
+
+.btn-submit {
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.btn-submit:disabled {
+    opacity: 0.7;
+    cursor: wait;
+}
+
+.cv-success {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 12px 0 4px;
+}
+
+.cv-success h2 {
+    margin: 14px 0 6px;
+}
+
+.cv-success p {
+    margin: 0;
+}
+
+.cv-success-icon {
+    display: grid;
+    place-items: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: white;
+    font-size: 2rem;
+}
+
+@media (max-width: 520px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
 .modal-close {
     position: absolute;
     top: 12px;
