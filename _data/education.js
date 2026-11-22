@@ -100,7 +100,25 @@ module.exports = {
 
   coursesTitle: { en: "Complementary Education", pt: "Formação Complementar" },
   viewCertificate: { en: "View certificate", pt: "Ver certificado" },
+  inProgressLabel: { en: "In progress", pt: "Em curso" },
   courses: [
+    {
+      // inProgress: true shows an "In progress" tag here AND the "Currently learning" pill on the home page.
+      // When you finish: set it to false, change the date to the end date, and add thumb + certificate.
+      id: "gmp",
+      inProgress: true,
+      shortTitle: { en: "Foundations of GMP", pt: "Fundamentos de GMP" },
+      shortIssuer: "USP",
+      title: { en: "Foundations of GMP (Good Manufacturing Practices)", pt: "Fundamentos de GMP (Boas Práticas de Fabrico)" },
+      issuer: { en: "United States Pharmacopeia (USP) · Online", pt: "United States Pharmacopeia (USP) · Online" },
+      date: { en: "Nov 2026", pt: "nov. 2026" },
+      text: {
+        en: "Self-paced course of 10 modules on Good Manufacturing Practices, based on WHO and PIC/S principles: the standards that ensure medical products are quality-assured and fit for their intended use.",
+        pt: "Curso autónomo de 10 módulos sobre Boas Práticas de Fabrico, baseado nos princípios da OMS e do PIC/S: as normas que asseguram a qualidade dos produtos médicos e a sua adequação ao uso pretendido."
+      },
+      thumb: null,
+      certificate: null
+    },
     {
       title: { en: "ThinkBio - Bioengineering Case Study Competition", pt: "ThinkBio - Competição de Case Study em Bioengenharia" },
       issuer: { en: "NEB - Bioengineering Students' Association, University of Porto", pt: "NEB - Núcleo de Estudantes de Bioengenharia, Universidade do Porto" },

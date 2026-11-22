@@ -413,11 +413,20 @@ main {
     padding: 40px 0 24px;
 }
 
+/* "Open to opportunities" + "Currently learning" pills, stacked */
+.hero-badges {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin: 0 0 18px;
+}
+
 .badge-open {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    margin: 0 0 18px;
+    margin: 0;
     padding: 6px 14px 6px 12px;
     background: var(--accent-soft);
     color: var(--accent-strong);
@@ -425,6 +434,34 @@ main {
     border-radius: 999px;
     font-size: 0.85rem;
     font-weight: 600;
+}
+
+.badge-learning {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px 6px 10px;
+    background: var(--surface-strong);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+.badge-learning:hover {
+    border-color: var(--accent);
+    background: white;
+}
+
+.badge-learning strong {
+    font-weight: 700;
+}
+
+.badge-learning .material-symbols-outlined {
+    font-size: 1.15rem;
+    color: var(--accent);
 }
 
 /* The little "live" dot */
@@ -2234,6 +2271,30 @@ dialog.modal[open] .modal-content-box {
     font-size: 0.85rem;
     font-style: italic;
     color: var(--text-muted);
+}
+
+/* "In progress" tag next to a course date */
+.tag-progress {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-left: 6px;
+    padding: 2px 9px;
+    background: var(--accent-soft);
+    color: var(--accent-strong);
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-style: normal;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.tag-progress::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
 }
 
 .course-card p {

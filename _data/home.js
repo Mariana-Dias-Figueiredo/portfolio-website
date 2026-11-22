@@ -5,6 +5,8 @@ module.exports = {
     en: "Bioengineer with a MSc from the University of Porto, turning biological research into practical solutions, from bioactive peptides and alternative proteins to bioprocess development. Looking for my next challenge anywhere in the biotech industry.",
     pt: "Bioengenheira, Mestre pela Universidade do Porto, focada em transformar investigação biológica em soluções práticas, desde os péptidos bioativos e proteínas alternativas até ao desenvolvimento de bioprocessos. À procura do próximo desafio em qualquer área da indústria biotecnológica."
   },
+  // Pill under "Open to opportunities"; it shows whichever course in education.js has inProgress: true
+  learningLabel: { en: "Currently learning:", pt: "A frequentar:" },
   ctaPrimary: { en: "Get in touch", pt: "Entre em contacto" },
   ctaSecondary: { en: "See my experience", pt: "Ver a minha experiência" },
   aboutButton: { en: "About me", pt: "Sobre mim" },

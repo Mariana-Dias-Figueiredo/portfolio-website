@@ -13,9 +13,19 @@ pageKey: home
 <!-- Hero -->
 <section class="hero">
     <div class="hero-text">
-        {%- if site.openToWork %}
-        <p class="badge-open"><span class="pulse" aria-hidden="true"></span>{{ ui.openToWork | t(lang) }}</p>
-        {%- endif %}
+        <div class="hero-badges">
+            {%- if site.openToWork %}
+            <p class="badge-open"><span class="pulse" aria-hidden="true"></span>{{ ui.openToWork | t(lang) }}</p>
+            {%- endif %}
+            {%- for course in education.courses %}
+            {%- if course.inProgress %}
+            <a class="badge-learning" href="{{ ('/education/#' + course.id) | localeUrl(lang) }}">
+                <span class="material-symbols-outlined" aria-hidden="true">school</span>
+                <span>{{ home.learningLabel | t(lang) }} <strong>{{ course.shortTitle | t(lang) }}</strong> &middot; {{ course.shortIssuer }}</span>
+            </a>
+            {%- endif %}
+            {%- endfor %}
+        </div>
         <p class="eyebrow">
             {{ ui.role | t(lang) }}
             <span class="eyebrow-sep" aria-hidden="true">&middot;</span>
